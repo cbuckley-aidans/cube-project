@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSPACES BASICS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon Icons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+    <style>
+        :root {
+            --primary-bg: #ffffff;
+            --secondary-bg: #f7f7f7;
+            --accent-bg: #f0f0f0;
+            --accent-color: #0a2351;
+            --active-color: #3b82f6;
+            --outline-color: #191919;
+            --text-color: #191919;
+            --shadow-sm: 0 0.15em 0 var(--outline-color);
+            --shadow-md: 0 0.25em 0 var(--outline-color);
+            --border-radius: 0.6em;
+            --transition-time: 0.15s;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            letter-spacing: -0.01em;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 14px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            border: 3px solid var(--secondary-bg);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--active-color);
+            transform: scale(1.05);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-top: 0;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 1px;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* Cards Container */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Card Design */
+        .card {
+            background-color: var(--primary-bg);
+            border: 2px solid var(--outline-color);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            transition: transform var(--transition-time), box-shadow var(--transition-time);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(0);
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            width: 280px;
+        }
+
+        .card:hover {
+            transform: translateY(-0.25em);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--accent-color);
+            border: 2px solid var(--outline-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: transform var(--transition-time), box-shadow var(--transition-time);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(0);
+        }
+
+        .card:hover .card-icon {
+            transform: translateY(-0.25em);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            text-align: center;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+
+        /* Card color variations */
+        .card-branching::before {
+            background-color: #3b82f6;
+        }
+        .card-branching .card-icon {
+            background-color: #3b82f6;
+        }
+
+        .card-iteration::before {
+            background-color: #8b5cf6;
+        }
+        .card-iteration .card-icon {
+            background-color: #8b5cf6;
+        }
+
+        .card-variables::before {
+            background-color: #10b981;
+        }
+        .card-variables .card-icon {
+            background-color: #10b981;
+        }
+
+        /* Cheatsheet Button */
+        .cheatsheet-button {
+            position: fixed;
+            left: 30px;
+            top: 30px;
+            z-index: 100;
+            text-decoration: none;
+        }
+
+        .cheatsheet-btn {
+            display: flex;
+            align-items: center;
+            background-color: #ef4444;
+            color: white;
+            border: 2px solid var(--outline-color);
+            border-radius: var(--border-radius);
+            padding: 10px 15px;
+            font-weight: 600;
+            transition: transform var(--transition-time), box-shadow var(--transition-time);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cheatsheet-btn:hover {
+            transform: translateY(-0.25em);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cheatsheet-btn i {
+            margin-right: 8px;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 40px 15px;
+            }
+
+            .cards-container {
+                gap: 20px;
+            }
+
+            .card {
+                padding: 20px;
+                width: 240px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .cheatsheet-button {
+                left: 15px;
+                top: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cheatsheet Button -->
+    <a href="cheatsheet.html" class="cheatsheet-button">
+        <div class="cheatsheet-btn">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Cheatsheet</span>
+        </div>
+    </a>
+
+    <div class="main-container">
+        <div class="title-container">
+            <h1>COSPACES BASICS</h1>
+        </div>
+
+        <div class="cards-container">
+            <a href="branching.html" class="card card-branching">
+                <div class="card-icon">
+                    <i class="fa-solid fa-code-branch"></i>
+                </div>
+                <h2 class="card-title">Branching</h2>
+                <p class="card-description">Make your project do different things based on different decisions.</p>
+            </a>
+            
+            <a href="iteration.html" class="card card-iteration">
+                <div class="card-icon">
+                    <i class="fa-solid fa-rotate"></i>
+                </div>
+                <h2 class="card-title">Iteration</h2>
+                <p class="card-description">Use loops to repeat actions many times without writing the same code over and over.</p>
+            </a>
+            
+            <a href="variables.html" class="card card-variables">
+                <div class="card-icon">
+                    <i class="fa-solid fa-flask"></i>
+                </div>
+                <h2 class="card-title">Variables</h2>
+                <p class="card-description">Store information that can change, like scores or names, and use it in your projects.</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

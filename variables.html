@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoSpaces Variables</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon Icons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" style="overflow-y: auto; overflow-x: hidden;">
+        <div class="sidebar-logo">COSPACES VARIABLES</div>
+        <a href="index.html" class="home-button">
+            <i class="fas fa-home"></i>
+            HOME
+        </a>
+        <div class="sidebar-nav">
+            <button class="tab-button active" data-tab="lisc">
+                <i class="fas fa-clipboard-list"></i>
+                LI/SC
+            </button>
+            <button class="tab-button" data-tab="chunk1">
+                <i class="fas fa-cube"></i>
+                CHUNK 1
+            </button>
+            <button class="tab-button" data-tab="chew1">
+                <i class="fas fa-utensils"></i>
+                CHEW 1
+            </button>
+            <button class="tab-button" data-tab="chunk2">
+                <i class="fas fa-cube"></i>
+                CHUNK 2
+            </button>
+            <button class="tab-button" data-tab="chew2">
+                <i class="fas fa-utensils"></i>
+                CHEW 2
+            </button>
+            <button class="tab-button" data-tab="chunk3">
+                <i class="fas fa-cube"></i>
+                CHUNK 3
+            </button>
+            <button class="tab-button" data-tab="chew3">
+                <i class="fas fa-utensils"></i>
+                CHEW 3
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Learning Intentions and Success Criteria section -->
+        <section id="lisc" class="tab-content active light-section">
+            <h1>LEARNING INTENTIONS & SUCCESS CRITERIA <i class="fas fa-bullseye" style="margin-left: 15px;"></i></h1>
+            
+            <div class="card">
+                <div class="element-header" style="margin: -35px -40px 30px -40px; padding: 25px 35px;">
+                    <div class="element-number">1</div>
+                    <h3>Learning Intentions <i class="fas fa-bullseye" style="margin-left: 15px; color: var(--accent-color);"></i></h3>
+                </div>
+                
+                <ul>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 12px;"></i> Understand what variables are and why they're important in coding</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 12px;"></i> Learn how to create and use variables in CoSpaces</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 12px;"></i> Discover how variables can store different types of information</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 12px;"></i> Learn how to change the value of variables during a program</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="element-header" style="margin: -35px -40px 30px -40px; padding: 25px 35px;">
+                    <div class="element-number">2</div>
+                    <h3>Success Criteria <i class="fas fa-trophy" style="margin-left: 15px; color: var(--accent-color);"></i></h3>
+                </div>
+                
+                <p>By the end of this lesson, you should be able to:</p>
+                
+                <ul>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Create a variable with a good name and give it a starting value</li>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Change the value of a variable during your program</li>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Use variables to make your character move or change</li>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Create a simple game that keeps score using a variable</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CHUNK 1: What is a Variable? -->
+        <section id="chunk1" class="tab-content dark-section">
+            <h1>CHUNK 1: WHAT IS A VARIABLE? <i class="fas fa-box-open" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chunk-section">
+                <div class="chunk-badge">TEACHER CHUNK</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 5 mins</div>
+                
+                <h3>Variables: Magic Containers for Information</h3>
+                
+                <p>A variable is like a magical box with a label that can hold different things. Just as you might have a box labeled "TOYS" for your toys, in CoSpaces we create variables with special names to remember important information in our games and stories.</p>
+                
+                <div class="two-column-grid" style="margin-top: 30px;">
+                    <div class="interactive-card">
+                        <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                            <div class="element-number">1</div>
+                            <h3>Variable Imagination <i class="fas fa-box" style="margin-left: 10px;"></i></h3>
+                        </div>
+                        
+                        <div class="variable-animation" style="padding: 30px;">
+                            <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-box-open" style="font-size: 6em; color: var(--accent-color);"></i>
+                                </div>
+                            </div>
+                            
+                            <p style="text-align: center; font-weight: bold; font-size: 1.2em; margin-bottom: 25px;">Think of variables as special containers:</p>
+                            
+                            <div class="icon-box">
+                                <div class="icon-container">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <div class="icon-text">
+                                    <h4>score</h4>
+                                    <p>Keeps track of points (like 5)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="icon-box">
+                                <div class="icon-container">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="icon-text">
+                                    <h4>lives</h4>
+                                    <p>Keeps track of player lives (like 3)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="icon-box">
+                                <div class="icon-container">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="icon-text">
+                                    <h4>playerName</h4>
+                                    <p>Remembers player name (like "Sam")</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-card">
+                        <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                            <div class="element-number">2</div>
+                            <h3>Creating Variables <i class="fas fa-magic" style="margin-left: 10px;"></i></h3>
+                        </div>
+                        
+                        <p style="font-size: 1.2em; text-align: center; font-weight: 600; margin-bottom: 20px;">In CoSpaces, we create variables like this:</p>
+                        
+                        <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 400px;">
+                            <div style="padding: 15px;">
+                                <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                    <div style="width: 300px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                        <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Creating a 'score' variable with a starting value of 0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="background-color: rgba(0,0,0,0.05); padding: 15px; text-align: center; border-top: 1px solid var(--outline-color);">
+                                <p style="margin: 0;"><i class="fas fa-lightbulb" style="color: var(--accent-color); margin-right: 10px;"></i> Click the "Create Variable" button and give it a name!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Variable Types Section -->
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">3</div>
+                        <h3>Types of Variables <i class="fas fa-list-ul" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; text-align: center; margin-bottom: 20px;">Variables can hold different kinds of information:</p>
+                    
+                    <div class="elements-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                        <div class="element-card" style="background-color: #f0f7ff; transition: all 0.3s ease;">
+                            <div class="element-header">
+                                <div class="element-number">1</div>
+                                <h3>NUMBERS <i class="fas fa-sort-numeric-up" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>Numbers like 1, 10, or 42 that you can count with</p>
+                                <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                                    <div style="padding: 10px;">
+                                        <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                            <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                                <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Number variable</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card" style="background-color: #f0fff4; transition: all 0.3s ease;">
+                            <div class="element-header">
+                                <div class="element-number">2</div>
+                                <h3>TEXT <i class="fas fa-font" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>Words and letters like "Hello" or "Player"</p>
+                                <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                                    <div style="padding: 10px;">
+                                        <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                            <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                                <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Text variable</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card" style="background-color: #fff7f0; transition: all 0.3s ease;">
+                            <div class="element-header">
+                                <div class="element-number">3</div>
+                                <h3>YES/NO <i class="fas fa-toggle-on" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>True or False values (like a light switch - on or off)</p>
+                                <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                                    <div style="padding: 10px;">
+                                        <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                            <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                                <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Boolean variable</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card" style="background-color: #f0f0ff; transition: all 0.3s ease;">
+                            <div class="element-header">
+                                <div class="element-number">4</div>
+                                <h3>COLORS <i class="fas fa-palette" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>Colors like red, blue or green to use in your world</p>
+                                <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                                    <div style="padding: 10px;">
+                                        <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                            <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                                <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Color variable</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Why Variables Are Awesome <i class="fas fa-question-circle" style="margin-left: 10px;"></i></h3>
+                <div class="elements-grid" style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                    <div class="element-card" style="background-color: #f0f7ff; transition: all 0.3s ease;">
+                        <div class="element-header">
+                            <div class="element-number">1</div>
+                            <h3>REMEMBER THINGS <i class="fas fa-brain" style="margin-left: 12px;"></i></h3>
+                        </div>
+                        <div class="element-content">
+                            <p>Variables let your program remember important information</p>
+                            <div style="text-align: center; margin-top: 15px;">
+                                <i class="fas fa-memory" style="font-size: 2.5em; color: var(--accent-color);"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card" style="background-color: #f0fff4; transition: all 0.3s ease;">
+                        <div class="element-header">
+                            <div class="element-number">2</div>
+                            <h3>KEEP SCORE <i class="fas fa-trophy" style="margin-left: 12px;"></i></h3>
+                        </div>
+                        <div class="element-content">
+                            <p>Variables can count points in games and keep track of scores</p>
+                            <div style="text-align: center; margin-top: 15px;">
+                                <i class="fas fa-star" style="font-size: 2.5em; color: var(--accent-color);"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card" style="background-color: #fff7f0; transition: all 0.3s ease;">
+                        <div class="element-header">
+                            <div class="element-number">3</div>
+                            <h3>CHANGE THINGS <i class="fas fa-exchange-alt" style="margin-left: 12px;"></i></h3>
+                        </div>
+                        <div class="element-content">
+                            <p>Variables can change while your program is running</p>
+                            <div style="text-align: center; margin-top: 15px;">
+                                <i class="fas fa-sync" style="font-size: 2.5em; color: var(--accent-color);"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card" style="background-color: #f0f0ff; transition: all 0.3s ease;">
+                        <div class="element-header">
+                            <div class="element-number">4</div>
+                            <h3>MAKE DECISIONS <i class="fas fa-random" style="margin-left: 12px;"></i></h3>
+                        </div>
+                        <div class="element-content">
+                            <p>Variables help your program make choices and decisions</p>
+                            <div style="text-align: center; margin-top: 15px;">
+                                <i class="fas fa-code-branch" style="font-size: 2.5em; color: var(--accent-color);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHEW 1: Concept Check -->
+        <section id="chew1" class="tab-content light-section">
+            <h1>CHEW 1: CONCEPT CHECK <i class="fas fa-clipboard-check" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chew-section">
+                <div class="chew-badge">STUDENT ACTIVITY</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 5 mins</div>
+                
+                <h3>Check Your Understanding</h3>
+                
+                <div class="activity-goal">
+                    <h4><i class="fas fa-bullseye" style="color: var(--chew-color);"></i> Activity Goals</h4>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Draw a picture of what a variable is on paper or your tablet</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Talk to a partner about what variables do</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Think of three variables you might use in a game</li>
+                    </ul>
+                </div>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>Draw a Variable <i class="fas fa-pencil-alt" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="background-color: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius); padding: 25px; margin-bottom: 25px; text-align: center;">
+                        <p style="font-size: 1.3em; font-weight: 600; margin-bottom: 15px;">Using paper or a tablet:</p>
+                        <p style="text-align: left; font-size: 1.2em; margin-left: 20px; margin-bottom: 15px;">Draw a picture that shows what a variable is. Label your picture!</p>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: center; margin-top: 20px;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-edit" style="font-size: 5em; color: var(--chew-color);"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>Game Variables <i class="fas fa-gamepad" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p style="font-size: 1.3em; font-weight: 600; text-align: center; margin-bottom: 25px;">Think about your favorite game. What things does it need to keep track of?</p>
+                    
+                    <div style="background-color: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius); padding: 25px; margin: 0 0 25px 0;">
+                        <p style="font-size: 1.2em; margin-bottom: 15px;">Write down 3 things that could be variables in a game:</p>
+                        <ol style="font-size: 1.1em; margin-left: 20px;">
+                            <li style="margin-bottom: 10px;">_____________________</li>
+                            <li style="margin-bottom: 10px;">_____________________</li>
+                            <li>_____________________</li>
+                        </ol>
+                    </div>
+                    
+                    <div style="background-color: white; border-radius: var(--border-radius); padding: 20px; border: 2px dashed var(--chew-color);">
+                        <p style="margin: 0; text-align: center;"><i class="fas fa-lightbulb" style="color: var(--chew-color); margin-right: 10px;"></i> <strong>Hint:</strong> Think about scores, health, player names, speed, or time!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHUNK 2: Changing Variables -->
+        <section id="chunk2" class="tab-content dark-section">
+            <h1>CHUNK 2: CHANGING VARIABLES <i class="fas fa-exchange-alt" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chunk-section">
+                <div class="chunk-badge">TEACHER CHUNK</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 5 mins</div>
+                
+                <h3>Making Variables Change</h3>
+                
+                <p>The coolest thing about variables is that they can change! Let's see how we can increase, decrease, or completely change the values stored in our variables.</p>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>Changing Number Variables <i class="fas fa-plus-minus" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; text-align: center; margin-bottom: 20px;">In CoSpaces, we can increase or decrease number variables:</p>
+                    
+                    <div class="two-column-grid">
+                        <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 0 auto; max-width: 350px;">
+                            <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                                Adding to a variable
+                            </div>
+                            <div style="padding: 15px;">
+                                <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                    <div style="width: 280px; height: 160px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                        <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Adding 1 to score</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 0 auto; max-width: 350px;">
+                            <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                                Subtracting from a variable
+                            </div>
+                            <div style="padding: 15px;">
+                                <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                    <div style="width: 280px; height: 160px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                        <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Subtracting 1 from lives</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background-color: rgba(0,0,0,0.05); border-radius: var(--border-radius); padding: 20px; margin-top: 25px;">
+                        <h4 style="margin-top: 0;"><i class="fas fa-lightbulb" style="color: var(--accent-color); margin-right: 10px;"></i> When would you use this?</h4>
+                        <ul style="list-style-type: none; padding-left: 10px;">
+                            <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--accent-color);"></i> Add 1 to score when player collects a coin</li>
+                            <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--accent-color);"></i> Subtract 1 from lives when player hits an obstacle</li>
+                            <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--accent-color);"></i> Add 10 to time when player gets a power-up</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>Setting Variable Values <i class="fas fa-magic" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; text-align: center; margin-bottom: 20px;">We can also completely change a variable to a new value:</p>
+                    
+                    <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 0 auto; max-width: 400px;">
+                        <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                            Setting a variable to a specific value
+                        </div>
+                        <div style="padding: 15px;">
+                            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                    <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Setting playerName to "Alex"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background-color: rgba(0,0,0,0.05); border-radius: var(--border-radius); padding: 20px; margin-top: 25px;">
+                        <h4 style="margin-top: 0;"><i class="fas fa-lightbulb" style="color: var(--accent-color); margin-right: 10px;"></i> When would you use this?</h4>
+                        <ul style="list-style-type: none; padding-left: 10px;">
+                            <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--accent-color);"></i> Reset score to 0 when starting a new game</li>
+                            <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--accent-color);"></i> Set lives to 3 at the beginning</li>
+                            <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--accent-color);"></i> Change playerName when a new player starts</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">3</div>
+                        <h3>Showing Variable Values <i class="fas fa-eye" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; text-align: center; margin-bottom: 20px;">We can display variables to the player:</p>
+                    
+                    <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 0 auto; max-width: 400px;">
+                        <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                            Displaying a variable on screen
+                        </div>
+                        <div style="padding: 15px;">
+                            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                    <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Showing "Score: 5" text</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Practical Examples <i class="fas fa-code" style="margin-left: 10px;"></i></h3>
+                
+                <div class="elements-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                    <div class="element-card" style="background-color: #f0f7ff; transition: all 0.3s ease;">
+                        <div class="element-header">
+                            <div class="element-number">1</div>
+                            <h3>COIN COLLECTOR <i class="fas fa-coins" style="margin-left: 12px;"></i></h3>
+                        </div>
+                        <div class="element-content">
+                            <p>When player touches a coin, add 1 to score</p>
+                            <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                                <div style="padding: 10px;">
+                                    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                        <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                            <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Coin collector code</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card" style="background-color: #f0fff4; transition: all 0.3s ease;">
+                        <div class="element-header">
+                            <div class="element-number">2</div>
+                            <h3>LIVES COUNTER <i class="fas fa-heart" style="margin-left: 12px;"></i></h3>
+                        </div>
+                        <div class="element-content">
+                            <p>When player hits obstacle, subtract 1 from lives</p>
+                            <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                                <div style="padding: 10px;">
+                                    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                        <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                            <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Lives counter code</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHEW 2: Try It Yourself -->
+        <section id="chew2" class="tab-content light-section">
+            <h1>CHEW 2: TRY IT YOURSELF <i class="fas fa-keyboard" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chew-section">
+                <div class="chew-badge">STUDENT ACTIVITY</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 10 mins</div>
+                
+                <h3>Hands-On Coding Activity</h3>
+                
+                <div class="activity-goal">
+                    <h4><i class="fas fa-bullseye" style="color: var(--chew-color);"></i> Activity Goals</h4>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Create a score variable in CoSpaces</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Make the score increase when clicking an object</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Display the score on screen</li>
+                    </ul>
+                </div>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>Creating a Click Counter <i class="fas fa-mouse-pointer" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <i class="fas fa-laptop-code" style="font-size: 5em; color: var(--chew-color);"></i>
+                    </div>
+                    
+                    <ol style="font-size: 1.2em; margin-bottom: 25px;">
+                        <li style="margin-bottom: 15px;">Open CoSpaces and create a new project</li>
+                        <li style="margin-bottom: 15px;">Add a 3D object (like a coin or cube)</li>
+                        <li style="margin-bottom: 15px;">Create a score variable with a starting value of 0</li>
+                        <li>Add code to increase score when the object is clicked</li>
+                    </ol>
+                    
+                    <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 400px;">
+                        <div style="background-color: var(--chew-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                            Example: Click Counter
+                        </div>
+                        <div style="padding: 15px;">
+                            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                    <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Click counter code</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>Extension: Display the Score <i class="fas fa-level-up-alt" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; margin-bottom: 20px;">Now let's show the score on screen:</p>
+                    <ol style="font-size: 1.2em; margin-bottom: 25px;">
+                        <li style="margin-bottom: 15px;">Add a text object to your scene</li>
+                        <li style="margin-bottom: 15px;">Use the "set text" block to display the score</li>
+                        <li>Test your code by clicking the object</li>
+                    </ol>
+                    
+                    <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 400px;">
+                        <div style="background-color: var(--chew-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                            Example: Display Score
+                        </div>
+                        <div style="padding: 15px;">
+                            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                    <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Display score code</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Common Mistakes to Avoid <i class="fas fa-exclamation-triangle" style="margin-left: 10px;"></i></h3>
+                
+                <div class="two-column-grid">
+                    <div class="interactive-card" style="border-left: 4px solid var(--bad-color);">
+                        <h4><i class="fas fa-times-circle" style="color: var(--bad-color); margin-right: 12px;"></i> Common Mistake:</h4>
+                        <p>Forgetting to create the variable first</p>
+                        <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                            <div style="padding: 10px;">
+                                <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                    <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                        <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Missing variable</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-card" style="border-left: 4px solid var(--bad-color);">
+                        <h4><i class="fas fa-times-circle" style="color: var(--bad-color); margin-right: 12px;"></i> Common Mistake:</h4>
+                        <p>Using the wrong block to change a variable</p>
+                        <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                            <div style="padding: 10px;">
+                                <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                    <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                        <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Wrong block type</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHUNK 3: Using Variables in Simple Problems -->
+        <section id="chunk3" class="tab-content dark-section">
+            <h1>CHUNK 3: USING VARIABLES IN GAMES <i class="fas fa-gamepad" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chunk-section">
+                <div class="chunk-badge">TEACHER CHUNK</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 5 mins</div>
+                
+                <h3>Solving Game Problems with Variables</h3>
+                
+                <p>Variables are super important in games! Let's see how variables can help us solve different game problems.</p>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>Game Health System <i class="fas fa-heart" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; margin-bottom: 20px;">Here's a simple health system for a game:</p>
+                    
+                    <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 400px;">
+                        <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                            Health System
+                        </div>
+                        <div style="padding: 15px;">
+                            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                    <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Health system code</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 25px; display: flex; align-items: center; background-color: rgba(0,0,0,0.05); padding: 15px; border-radius: var(--border-radius);">
+                        <div style="flex-shrink: 0; margin-right: 20px; font-size: 2em; color: var(--accent-color);">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin-top: 0; margin-bottom: 10px;">How it works:</h4>
+                            <ol style="margin: 0; padding-left: 20px;">
+                                <li>Create a health variable starting at 3</li>
+                                <li>When player hits an obstacle, subtract 1 from health</li>
+                                <li>Check if health is 0 (game over!)</li>
+                                <li>Show current health on screen</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>Color Changer <i class="fas fa-palette" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; margin-bottom: 20px;">Variables can also control object colors:</p>
+                    
+                    <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 400px;">
+                        <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                            Color Changing System
+                        </div>
+                        <div style="padding: 15px;">
+                            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                    <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Color changing code</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 25px; display: flex; align-items: center; background-color: rgba(0,0,0,0.05); padding: 15px; border-radius: var(--border-radius);">
+                        <div style="flex-shrink: 0; margin-right: 20px; font-size: 2em; color: var(--accent-color);">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin-top: 0; margin-bottom: 10px;">How it works:</h4>
+                            <ol style="margin: 0; padding-left: 20px;">
+                                <li>Create a colorChoice variable</li>
+                                <li>When player clicks, change the value</li>
+                                <li>Use the variable to set an object's color</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>More Game Ideas Using Variables <i class="fas fa-lightbulb" style="margin-left: 10px;"></i></h3>
+                
+                <div class="elements-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                    <div class="element-card" style="background-color: #f0f7ff; transition: all 0.3s ease;">
+                        <div class="element-header">
+                            <div class="element-number">1</div>
+                            <h3>SPEED CONTROLLER <i class="fas fa-tachometer-alt" style="margin-left: 12px;"></i></h3>
+                        </div>
+                        <div class="element-content">
+                            <p>Use a variable to control how fast objects move</p>
+                            <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                                <div style="padding: 10px;">
+                                    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                        <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                            <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Speed control</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card" style="background-color: #f0fff4; transition: all 0.3s ease;">
+                        <div class="element-header">
+                            <div class="element-number">2</div>
+                            <h3>COUNTDOWN TIMER <i class="fas fa-hourglass-half" style="margin-left: 12px;"></i></h3>
+                        </div>
+                        <div class="element-content">
+                            <p>Create a timer that counts down from 60 seconds</p>
+                            <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                                <div style="padding: 10px;">
+                                    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                        <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                            <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Timer code</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHEW 3: Challenge Time! -->
+        <section id="chew3" class="tab-content light-section">
+            <h1>CHEW 3: CHALLENGE TIME! <i class="fas fa-trophy" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chew-section">
+                <div class="chew-badge">STUDENT ACTIVITY</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 15 mins</div>
+                
+                <h3>Challenge: Build a Coin Collector Game</h3>
+                
+                <div class="activity-goal">
+                    <h4><i class="fas fa-bullseye" style="color: var(--chew-color);"></i> Activity Goals</h4>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Create a simple game with coins to collect</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Use a score variable to track collected coins</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Display the score on screen</li>
+                    </ul>
+                </div>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>Basic Challenge <i class="fas fa-star" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <i class="fas fa-coins" style="font-size: 5em; color: var(--chew-color);"></i>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; text-align: center; font-weight: 600; margin-bottom: 20px;">Create a coin collector game:</p>
+                    
+                    <ol style="font-size: 1.2em; margin-bottom: 25px;">
+                        <li style="margin-bottom: 15px;">Add a player character and some coins</li>
+                        <li style="margin-bottom: 15px;">Create a score variable starting at 0</li>
+                        <li style="margin-bottom: 15px;">When the player touches a coin, add 1 to score</li>
+                        <li>Display the score on screen</li>
+                    </ol>
+                    
+                    <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 400px;">
+                        <div style="background-color: var(--chew-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                            Example: Coin Collector
+                        </div>
+                        <div style="padding: 15px;">
+                            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                    <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Coin collector code</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>Extension Challenges <i class="fas fa-star" style="margin-left: 10px;"></i><i class="fas fa-star" style="margin-left: 5px;"></i></h3>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; text-align: center; font-weight: 600; margin-bottom: 20px;">Try these extra challenges:</p>
+                    
+                    <div class="two-column-grid" style="margin-top: 0;">
+                        <div class="interactive-card" style="border-left: 4px solid var(--chew-color);">
+                            <h4><i class="fas fa-level-up-alt" style="margin-right: 10px;"></i> Challenge A: Timer</h4>
+                            <p>Add a timer that counts down from 30 seconds</p>
+                            <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                                <div style="padding: 10px;">
+                                    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                        <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                            <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Timer example</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="interactive-card" style="border-left: 4px solid var(--chew-color);">
+                            <h4><i class="fas fa-level-up-alt" style="margin-right: 10px;"></i> Challenge B: High Score</h4>
+                            <p>Add a high score variable that remembers the best score</p>
+                            <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
+                                <div style="padding: 10px;">
+                                    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                        <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                            <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: High score example</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Example Solution <i class="fas fa-check-circle" style="margin-left: 10px;"></i></h3>
+                
+                <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 600px;">
+                    <div style="background-color: var(--good-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                        Complete Coin Collector Game
+                    </div>
+                    <div style="padding: 15px;">
+                        <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                            <div style="width: 530px; height: 280px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Full coin collector game code</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background-color: rgba(0,0,0,0.05); border-radius: var(--border-radius); padding: 20px; margin-top: 25px;">
+                    <h4 style="margin-top: 0;"><i class="fas fa-lightbulb" style="color: var(--accent-color); margin-right: 10px;"></i> Key Points We Learned</h4>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><i class="fas fa-check" style="margin-right: 12px; color: var(--good-color);"></i> Variables are like containers that store information</li>
+                        <li><i class="fas fa-check" style="margin-right: 12px; color: var(--good-color);"></i> Variables can hold numbers, text, and other types of data</li>
+                        <li><i class="fas fa-check" style="margin-right: 12px; color: var(--good-color);"></i> We can change variable values during our program</li>
+                        <li><i class="fas fa-check" style="margin-right: 12px; color: var(--good-color);"></i> Variables help us keep score and create better games</li>
+                        <li><i class="fas fa-check" style="margin-right: 12px; color: var(--good-color);"></i> We can use variables to make decisions in our program</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Tab switching
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and tabs
+                    document.querySelectorAll('.tab-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Add active class to selected button and tab
+                    this.classList.add('active');
+                    document.getElementById(tab).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
