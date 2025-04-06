@@ -45,14 +45,6 @@
                 <i class="fas fa-utensils"></i>
                 CHEW 2
             </button>
-            <button class="tab-button" data-tab="chunk3">
-                <i class="fas fa-cube"></i>
-                CHUNK 3
-            </button>
-            <button class="tab-button" data-tab="chew3">
-                <i class="fas fa-utensils"></i>
-                CHEW 3
-            </button>
         </div>
     </aside>
 
@@ -103,7 +95,7 @@
                 
                 <h3>Variables: Magic Containers for Information</h3>
                 
-                <p>A variable is like a magical box with a label that can hold different things. Just as you might have a box labeled "TOYS" for your toys, in CoSpaces we create variables with special names to remember important information in our games and stories.</p>
+                <p>A variable is like a magical box with a label that can hold different things. Just as you might have a box labelled "TOYS" for your toys, in CoSpaces we create variables with special names to remember important information in our games and stories.</p>
                 
                 <div class="two-column-grid" style="margin-top: 30px;">
                     <div class="interactive-card">
@@ -246,15 +238,15 @@
                         <div class="element-card" style="background-color: #f0f0ff; transition: all 0.3s ease;">
                             <div class="element-header">
                                 <div class="element-number">4</div>
-                                <h3>COLORS <i class="fas fa-palette" style="margin-left: 12px;"></i></h3>
+                                <h3>COLOURS <i class="fas fa-palette" style="margin-left: 12px;"></i></h3>
                             </div>
                             <div class="element-content">
-                                <p>Colors like red, blue or green to use in your world</p>
+                                <p>Colours like red, blue or green to use in your world</p>
                                 <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
                                     <div style="padding: 10px;">
                                         <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
                                             <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
-                                                <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Color variable</p>
+                                                <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Colour variable</p>
                                             </div>
                                         </div>
                                     </div>
@@ -366,7 +358,7 @@
                         <h3>Game Variables <i class="fas fa-gamepad" style="margin-left: 10px;"></i></h3>
                     </div>
                     
-                    <p style="font-size: 1.3em; font-weight: 600; text-align: center; margin-bottom: 25px;">Think about your favorite game. What things does it need to keep track of?</p>
+                    <p style="font-size: 1.3em; font-weight: 600; text-align: center; margin-bottom: 25px;">Think about your favourite game. What things does it need to keep track of?</p>
                     
                     <div style="background-color: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius); padding: 25px; margin: 0 0 25px 0;">
                         <p style="font-size: 1.2em; margin-bottom: 15px;">Write down 3 things that could be variables in a game:</p>
@@ -396,9 +388,193 @@
                 
                 <p>The coolest thing about variables is that they can change! Let's see how we can increase, decrease, or completely change the values stored in our variables.</p>
                 
+                <!-- Interactive Memory Simulation -->
                 <div class="interactive-card">
                     <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
                         <div class="element-number">1</div>
+                        <h3>Computer Memory Simulation <i class="fas fa-memory" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; text-align: center; margin-bottom: 20px;">Let's look at how the computer's memory changes when we update variables:</p>
+                    
+                    <div class="code-step-container">
+                        <div class="code-step-header" style="padding: 15px; margin-bottom: 10px;">
+                            <span>Memory Change Visualization</span>
+                            <span id="memory-step-indicator">Step 1 of 4</span>
+                        </div>
+                        
+                        <div class="code-step-content">
+                            <!-- Memory Step 1: Creating a variable -->
+                            <div id="memory-step-1" class="variable-update-step active">
+                                <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 10px auto 20px auto; max-width: 400px;">
+                                    <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                                        Step 1: Create a variable
+                                    </div>
+                                    <div style="padding: 15px;">
+                                        <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                            <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                                <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Creating score = 0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="memory-visualization">
+                                    <h4 style="text-align: center; margin-top: 10px;">Computer Memory</h4>
+                                    <div style="display: flex; justify-content: center; margin-top: 15px;">
+                                        <div style="background-color: #f5f5f5; border: 2px solid var(--accent-color); border-radius: 10px; padding: 15px; width: 250px; display: flex; flex-direction: column; align-items: center;">
+                                            <div style="display: flex; width: 100%; margin-bottom: 15px;">
+                                                <div style="background-color: var(--accent-color); color: white; padding: 10px; width: 40%; text-align: center; border-radius: 5px 0 0 5px; font-weight: bold;">
+                                                    score
+                                                </div>
+                                                <div style="background-color: white; padding: 10px; width: 60%; text-align: center; border: 2px solid var(--accent-color); border-left: none; border-radius: 0 5px 5px 0; font-weight: bold;">
+                                                    0
+                                                </div>
+                                            </div>
+                                            <p style="margin: 0; font-size: 0.9em; color: #666;">The computer creates a container labelled "score" in memory and stores the value 0 in it.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Memory Step 2: Adding to a variable -->
+                            <div id="memory-step-2" class="variable-update-step">
+                                <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 0 auto 20px auto; max-width: 400px;">
+                                    <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                                        Step 2: Add 1 to score
+                                    </div>
+                                    <div style="padding: 15px;">
+                                        <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                            <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                                <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Adding 1 to score</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="memory-visualization">
+                                    <h4 style="text-align: center; margin-top: 10px;">Computer Memory</h4>
+                                    <div style="display: flex; justify-content: center; margin-top: 15px;">
+                                        <div style="background-color: #f5f5f5; border: 2px solid var(--accent-color); border-radius: 10px; padding: 15px; width: 250px; display: flex; flex-direction: column; align-items: center;">
+                                            <div style="display: flex; width: 100%; margin-bottom: 15px; opacity: 0.5; text-decoration: line-through;">
+                                                <div style="background-color: var(--accent-color); color: white; padding: 10px; width: 40%; text-align: center; border-radius: 5px 0 0 5px; font-weight: bold;">
+                                                    score
+                                                </div>
+                                                <div style="background-color: white; padding: 10px; width: 60%; text-align: center; border: 2px solid var(--accent-color); border-left: none; border-radius: 0 5px 5px 0; font-weight: bold;">
+                                                    0
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; width: 100%; margin-bottom: 15px;">
+                                                <div style="background-color: var(--accent-color); color: white; padding: 10px; width: 40%; text-align: center; border-radius: 5px 0 0 5px; font-weight: bold;">
+                                                    score
+                                                </div>
+                                                <div style="background-color: white; padding: 10px; width: 60%; text-align: center; border: 2px solid var(--accent-color); border-left: none; border-radius: 0 5px 5px 0; font-weight: bold;">
+                                                    1
+                                                </div>
+                                            </div>
+                                            <p style="margin: 0; font-size: 0.9em; color: #666;">The computer updates the "score" container to store the new value 1.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Memory Step 3: Adding to a variable again -->
+                            <div id="memory-step-3" class="variable-update-step">
+                                <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 0 auto 20px auto; max-width: 400px;">
+                                    <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                                        Step 3: Add 2 more to score
+                                    </div>
+                                    <div style="padding: 15px;">
+                                        <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                            <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                                <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Adding 2 to score</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="memory-visualization">
+                                    <h4 style="text-align: center; margin-top: 10px;">Computer Memory</h4>
+                                    <div style="display: flex; justify-content: center; margin-top: 15px;">
+                                        <div style="background-color: #f5f5f5; border: 2px solid var(--accent-color); border-radius: 10px; padding: 15px; width: 250px; display: flex; flex-direction: column; align-items: center;">
+                                            <div style="display: flex; width: 100%; margin-bottom: 15px; opacity: 0.5; text-decoration: line-through;">
+                                                <div style="background-color: var(--accent-color); color: white; padding: 10px; width: 40%; text-align: center; border-radius: 5px 0 0 5px; font-weight: bold;">
+                                                    score
+                                                </div>
+                                                <div style="background-color: white; padding: 10px; width: 60%; text-align: center; border: 2px solid var(--accent-color); border-left: none; border-radius: 0 5px 5px 0; font-weight: bold;">
+                                                    1
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; width: 100%; margin-bottom: 15px;">
+                                                <div style="background-color: var(--accent-color); color: white; padding: 10px; width: 40%; text-align: center; border-radius: 5px 0 0 5px; font-weight: bold;">
+                                                    score
+                                                </div>
+                                                <div style="background-color: white; padding: 10px; width: 60%; text-align: center; border: 2px solid var(--accent-color); border-left: none; border-radius: 0 5px 5px 0; font-weight: bold;">
+                                                    3
+                                                </div>
+                                            </div>
+                                            <p style="margin: 0; font-size: 0.9em; color: #666;">The computer updates the "score" container again to store the new value 3.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Memory Step 4: Setting to a specific value -->
+                            <div id="memory-step-4" class="variable-update-step">
+                                <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 0 auto 20px auto; max-width: 400px;">
+                                    <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                                        Step 4: Reset score to 0
+                                    </div>
+                                    <div style="padding: 15px;">
+                                        <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                            <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                                <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Setting score = 0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="memory-visualization">
+                                    <h4 style="text-align: center; margin-top: 10px;">Computer Memory</h4>
+                                    <div style="display: flex; justify-content: center; margin-top: 15px;">
+                                        <div style="background-color: #f5f5f5; border: 2px solid var(--accent-color); border-radius: 10px; padding: 15px; width: 250px; display: flex; flex-direction: column; align-items: center;">
+                                            <div style="display: flex; width: 100%; margin-bottom: 15px; opacity: 0.5; text-decoration: line-through;">
+                                                <div style="background-color: var(--accent-color); color: white; padding: 10px; width: 40%; text-align: center; border-radius: 5px 0 0 5px; font-weight: bold;">
+                                                    score
+                                                </div>
+                                                <div style="background-color: white; padding: 10px; width: 60%; text-align: center; border: 2px solid var(--accent-color); border-left: none; border-radius: 0 5px 5px 0; font-weight: bold;">
+                                                    3
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; width: 100%; margin-bottom: 15px;">
+                                                <div style="background-color: var(--accent-color); color: white; padding: 10px; width: 40%; text-align: center; border-radius: 5px 0 0 5px; font-weight: bold;">
+                                                    score
+                                                </div>
+                                                <div style="background-color: white; padding: 10px; width: 60%; text-align: center; border: 2px solid var(--accent-color); border-left: none; border-radius: 0 5px 5px 0; font-weight: bold;">
+                                                    0
+                                                </div>
+                                            </div>
+                                            <p style="margin: 0; font-size: 0.9em; color: #666;">The computer completely resets the "score" container back to 0.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-navigation">
+                            <button id="prev-memory-btn" class="step-btn" onclick="prevMemoryStep()" disabled>
+                                <i class="fas fa-chevron-left"></i> Previous
+                            </button>
+                            <button id="next-memory-btn" class="step-btn" onclick="nextMemoryStep()">
+                                Next <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
                         <h3>Changing Number Variables <i class="fas fa-plus-minus" style="margin-left: 10px;"></i></h3>
                     </div>
                     
@@ -444,7 +620,7 @@
                 
                 <div class="interactive-card" style="margin-top: 30px;">
                     <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
-                        <div class="element-number">2</div>
+                        <div class="element-number">3</div>
                         <h3>Setting Variable Values <i class="fas fa-magic" style="margin-left: 10px;"></i></h3>
                     </div>
                     
@@ -475,7 +651,7 @@
                 
                 <div class="interactive-card" style="margin-top: 30px;">
                     <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
-                        <div class="element-number">3</div>
+                        <div class="element-number">4</div>
                         <h3>Showing Variable Values <i class="fas fa-eye" style="margin-left: 10px;"></i></h3>
                     </div>
                     
@@ -547,7 +723,7 @@
             
             <div class="chew-section">
                 <div class="chew-badge">STUDENT ACTIVITY</div>
-                <div class="timer-badge"><i class="fas fa-clock"></i> 10 mins</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 15 mins</div>
                 
                 <h3>Hands-On Coding Activity</h3>
                 
@@ -617,6 +793,39 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">3</div>
+                        <h3>Challenge: Coin Collector Game <i class="fas fa-trophy" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <i class="fas fa-coins" style="font-size: 5em; color: var(--chew-color);"></i>
+                    </div>
+                    
+                    <p style="font-size: 1.2em; text-align: center; font-weight: 600; margin-bottom: 20px;">Create a coin collector game:</p>
+                    
+                    <ol style="font-size: 1.2em; margin-bottom: 25px;">
+                        <li style="margin-bottom: 15px;">Add a player character and some coins</li>
+                        <li style="margin-bottom: 15px;">Create a score variable starting at 0</li>
+                        <li style="margin-bottom: 15px;">When the player touches a coin, add 1 to score</li>
+                        <li>Display the score on screen</li>
+                    </ol>
+                    
+                    <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 400px;">
+                        <div style="background-color: var(--chew-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
+                            Example: Coin Collector
+                        </div>
+                        <div style="padding: 15px;">
+                            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
+                                    <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Coin collector code</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="card">
@@ -647,247 +856,6 @@
                                         <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Wrong block type</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CHUNK 3: Using Variables in Simple Problems -->
-        <section id="chunk3" class="tab-content dark-section">
-            <h1>CHUNK 3: USING VARIABLES IN GAMES <i class="fas fa-gamepad" style="margin-left: 15px;"></i></h1>
-            
-            <div class="chunk-section">
-                <div class="chunk-badge">TEACHER CHUNK</div>
-                <div class="timer-badge"><i class="fas fa-clock"></i> 5 mins</div>
-                
-                <h3>Solving Game Problems with Variables</h3>
-                
-                <p>Variables are super important in games! Let's see how variables can help us solve different game problems.</p>
-                
-                <div class="interactive-card">
-                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
-                        <div class="element-number">1</div>
-                        <h3>Game Health System <i class="fas fa-heart" style="margin-left: 10px;"></i></h3>
-                    </div>
-                    
-                    <p style="font-size: 1.2em; margin-bottom: 20px;">Here's a simple health system for a game:</p>
-                    
-                    <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 400px;">
-                        <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
-                            Health System
-                        </div>
-                        <div style="padding: 15px;">
-                            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
-                                <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
-                                    <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Health system code</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 25px; display: flex; align-items: center; background-color: rgba(0,0,0,0.05); padding: 15px; border-radius: var(--border-radius);">
-                        <div style="flex-shrink: 0; margin-right: 20px; font-size: 2em; color: var(--accent-color);">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <div>
-                            <h4 style="margin-top: 0; margin-bottom: 10px;">How it works:</h4>
-                            <ol style="margin: 0; padding-left: 20px;">
-                                <li>Create a health variable starting at 3</li>
-                                <li>When player hits an obstacle, subtract 1 from health</li>
-                                <li>Check if health is 0 (game over!)</li>
-                                <li>Show current health on screen</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="interactive-card" style="margin-top: 30px;">
-                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
-                        <div class="element-number">2</div>
-                        <h3>Color Changer <i class="fas fa-palette" style="margin-left: 10px;"></i></h3>
-                    </div>
-                    
-                    <p style="font-size: 1.2em; margin-bottom: 20px;">Variables can also control object colors:</p>
-                    
-                    <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 400px;">
-                        <div style="background-color: var(--accent-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
-                            Color Changing System
-                        </div>
-                        <div style="padding: 15px;">
-                            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
-                                <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
-                                    <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Color changing code</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 25px; display: flex; align-items: center; background-color: rgba(0,0,0,0.05); padding: 15px; border-radius: var(--border-radius);">
-                        <div style="flex-shrink: 0; margin-right: 20px; font-size: 2em; color: var(--accent-color);">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <div>
-                            <h4 style="margin-top: 0; margin-bottom: 10px;">How it works:</h4>
-                            <ol style="margin: 0; padding-left: 20px;">
-                                <li>Create a colorChoice variable</li>
-                                <li>When player clicks, change the value</li>
-                                <li>Use the variable to set an object's color</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>More Game Ideas Using Variables <i class="fas fa-lightbulb" style="margin-left: 10px;"></i></h3>
-                
-                <div class="elements-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
-                    <div class="element-card" style="background-color: #f0f7ff; transition: all 0.3s ease;">
-                        <div class="element-header">
-                            <div class="element-number">1</div>
-                            <h3>SPEED CONTROLLER <i class="fas fa-tachometer-alt" style="margin-left: 12px;"></i></h3>
-                        </div>
-                        <div class="element-content">
-                            <p>Use a variable to control how fast objects move</p>
-                            <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
-                                <div style="padding: 10px;">
-                                    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
-                                        <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
-                                            <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Speed control</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="element-card" style="background-color: #f0fff4; transition: all 0.3s ease;">
-                        <div class="element-header">
-                            <div class="element-number">2</div>
-                            <h3>COUNTDOWN TIMER <i class="fas fa-hourglass-half" style="margin-left: 12px;"></i></h3>
-                        </div>
-                        <div class="element-content">
-                            <p>Create a timer that counts down from 60 seconds</p>
-                            <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
-                                <div style="padding: 10px;">
-                                    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
-                                        <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
-                                            <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Timer code</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CHEW 3: Challenge Time! -->
-        <section id="chew3" class="tab-content light-section">
-            <h1>CHEW 3: CHALLENGE TIME! <i class="fas fa-trophy" style="margin-left: 15px;"></i></h1>
-            
-            <div class="chew-section">
-                <div class="chew-badge">STUDENT ACTIVITY</div>
-                <div class="timer-badge"><i class="fas fa-clock"></i> 15 mins</div>
-                
-                <h3>Challenge: Build a Coin Collector Game</h3>
-                
-                <div class="activity-goal">
-                    <h4><i class="fas fa-bullseye" style="color: var(--chew-color);"></i> Activity Goals</h4>
-                    <ul style="list-style-type: none; padding-left: 0;">
-                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Create a simple game with coins to collect</li>
-                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Use a score variable to track collected coins</li>
-                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Display the score on screen</li>
-                    </ul>
-                </div>
-                
-                <div class="interactive-card">
-                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
-                        <div class="element-number">1</div>
-                        <h3>Basic Challenge <i class="fas fa-star" style="margin-left: 10px;"></i></h3>
-                    </div>
-                    
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <i class="fas fa-coins" style="font-size: 5em; color: var(--chew-color);"></i>
-                    </div>
-                    
-                    <p style="font-size: 1.2em; text-align: center; font-weight: 600; margin-bottom: 20px;">Create a coin collector game:</p>
-                    
-                    <ol style="font-size: 1.2em; margin-bottom: 25px;">
-                        <li style="margin-bottom: 15px;">Add a player character and some coins</li>
-                        <li style="margin-bottom: 15px;">Create a score variable starting at 0</li>
-                        <li style="margin-bottom: 15px;">When the player touches a coin, add 1 to score</li>
-                        <li>Display the score on screen</li>
-                    </ol>
-                    
-                    <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 400px;">
-                        <div style="background-color: var(--chew-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
-                            Example: Coin Collector
-                        </div>
-                        <div style="padding: 15px;">
-                            <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
-                                <div style="width: 330px; height: 180px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
-                                    <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Coin collector code</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="interactive-card" style="margin-top: 30px;">
-                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
-                        <div class="element-number">2</div>
-                        <h3>Extension Challenges <i class="fas fa-star" style="margin-left: 10px;"></i><i class="fas fa-star" style="margin-left: 5px;"></i></h3>
-                    </div>
-                    
-                    <p style="font-size: 1.2em; text-align: center; font-weight: 600; margin-bottom: 20px;">Try these extra challenges:</p>
-                    
-                    <div class="two-column-grid" style="margin-top: 0;">
-                        <div class="interactive-card" style="border-left: 4px solid var(--chew-color);">
-                            <h4><i class="fas fa-level-up-alt" style="margin-right: 10px;"></i> Challenge A: Timer</h4>
-                            <p>Add a timer that counts down from 30 seconds</p>
-                            <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
-                                <div style="padding: 10px;">
-                                    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
-                                        <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
-                                            <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: Timer example</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="interactive-card" style="border-left: 4px solid var(--chew-color);">
-                            <h4><i class="fas fa-level-up-alt" style="margin-right: 10px;"></i> Challenge B: High Score</h4>
-                            <p>Add a high score variable that remembers the best score</p>
-                            <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 15px auto; max-width: 250px;">
-                                <div style="padding: 10px;">
-                                    <div style="background-color: #f5f5f5; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
-                                        <div style="width: 200px; height: 120px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
-                                            <p style="margin: 0; font-style: italic; color: #666; font-size: 0.9em;">Screenshot: High score example</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>Example Solution <i class="fas fa-check-circle" style="margin-left: 10px;"></i></h3>
-                
-                <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); overflow: hidden; margin: 20px auto; max-width: 600px;">
-                    <div style="background-color: var(--good-color); color: white; padding: 10px; text-align: center; font-weight: bold;">
-                        Complete Coin Collector Game
-                    </div>
-                    <div style="padding: 15px;">
-                        <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: center;">
-                            <div style="width: 530px; height: 280px; background-color: #ddd; display: flex; align-items: center; justify-content: center; border: 2px dashed #999; border-radius: 5px;">
-                                <p style="margin: 0; font-style: italic; color: #666;">Screenshot: Full coin collector game code</p>
                             </div>
                         </div>
                     </div>
@@ -927,7 +895,58 @@
                     document.getElementById(tab).classList.add('active');
                 });
             });
+            
+            // Initialize memory visualization steps
+            document.getElementById('memory-step-1').classList.add('active');
+            document.getElementById('memory-step-2').classList.remove('active');
+            document.getElementById('memory-step-3').classList.remove('active');
+            document.getElementById('memory-step-4').classList.remove('active');
+            
+            document.getElementById('prev-memory-btn').disabled = true;
+            document.getElementById('next-memory-btn').disabled = false;
         });
+        
+        // Memory visualization step by step navigation
+        let currentMemoryStep = 1;
+        const totalMemorySteps = 4;
+        
+        function nextMemoryStep() {
+            if (currentMemoryStep < totalMemorySteps) {
+                // Hide current step
+                document.getElementById(`memory-step-${currentMemoryStep}`).classList.remove('active');
+                
+                // Show next step
+                currentMemoryStep++;
+                document.getElementById(`memory-step-${currentMemoryStep}`).classList.add('active');
+                
+                // Update indicator and buttons
+                document.getElementById('memory-step-indicator').textContent = `Step ${currentMemoryStep} of ${totalMemorySteps}`;
+                document.getElementById('prev-memory-btn').disabled = false;
+                
+                if (currentMemoryStep === totalMemorySteps) {
+                    document.getElementById('next-memory-btn').disabled = true;
+                }
+            }
+        }
+        
+        function prevMemoryStep() {
+            if (currentMemoryStep > 1) {
+                // Hide current step
+                document.getElementById(`memory-step-${currentMemoryStep}`).classList.remove('active');
+                
+                // Show previous step
+                currentMemoryStep--;
+                document.getElementById(`memory-step-${currentMemoryStep}`).classList.add('active');
+                
+                // Update indicator and buttons
+                document.getElementById('memory-step-indicator').textContent = `Step ${currentMemoryStep} of ${totalMemorySteps}`;
+                document.getElementById('next-memory-btn').disabled = false;
+                
+                if (currentMemoryStep === 1) {
+                    document.getElementById('prev-memory-btn').disabled = true;
+                }
+            }
+        }
     </script>
 </body>
 </html>
