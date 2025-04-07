@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoSpaces Cheatsheet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --accent-color: #002654;
+            --primary-bg: #ffffff;
+            --secondary-bg: #f6f9fc;
+            --outline-color: #e6e9ef;
+            --text-color: #263238;
+            --light-text: #546e7a;
+            --border-radius: 12px;
+            --transition-time: 0.3s;
+            --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --good-color: #4caf50;
+            --bad-color: #ff4d4f;
+            --chew-color: #10b981;
+            
+            /* Colors for different skill types */
+            --animation-color: #8352ff;
+            --talk-color: #ff7043;
+            --quiz-color: #3f51b5;
+            --panel-color: #00acc1;
+            --path-color: #4caf50;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-bg);
+        }
+
+        /* Main content styles */
+        .main-content {
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Home button styles */
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #e74c3c;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, background-color 0.2s;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            background-color: #c0392b;
+        }
+
+        .home-button i {
+            font-size: 20px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        /* Page title */
+        .page-title {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #333;
+            position: relative;
+        }
+
+        .page-title:after {
+            content: "";
+            display: block;
+            width: 300px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Search */
+        .search-container {
+            margin: 0 auto 40px auto;
+            max-width: 1000px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            font-size: 1.1em;
+            border: 2px solid var(--outline-color);
+            border-radius: var(--border-radius);
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-time), box-shadow var(--transition-time), border-color var(--transition-time);
+        }
+
+        .search-input:focus {
+            outline: none;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-color);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #546e7a;
+            font-size: 1.2em;
+        }
+
+        .results-info {
+            text-align: center;
+            padding: 12px 16px;
+            margin: -20px auto 30px;
+            max-width: 600px;
+            background-color: var(--primary-bg);
+            border-radius: var(--border-radius);
+            display: none;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--outline-color);
+            font-weight: 500;
+        }
+
+        /* Skill cards */
+        .skill-card {
+            background-color: var(--primary-bg);
+            border: 1px solid var(--outline-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-time), box-shadow var(--transition-time);
+            overflow: hidden;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            background-color: var(--primary-bg);
+            border-bottom: 1px solid var(--outline-color);
+        }
+
+        .skill-header:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .skill-icon-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+        }
+
+        .animation-icon {
+            background-color: var(--animation-color);
+        }
+
+        .talk-icon {
+            background-color: var(--talk-color);
+        }
+
+        .quiz-icon {
+            background-color: var(--quiz-color);
+        }
+
+        .panel-icon {
+            background-color: var(--panel-color);
+        }
+
+        .path-icon {
+            background-color: var(--path-color);
+        }
+
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .toggle-arrow {
+            transition: transform 0.3s ease;
+            font-size: 1.2em;
+            color: #777;
+        }
+
+        .rotate-arrow {
+            transform: rotate(180deg);
+        }
+
+        .skill-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            padding: 0 25px;
+        }
+
+        .skill-content.active {
+            max-height: 5000px;
+            padding: 25px;
+        }
+
+        /* Subsections */
+        .subsection-block {
+            background-color: var(--primary-bg);
+            border: 1px solid var(--outline-color);
+            border-radius: var(--border-radius);
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .subsection-heading {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--outline-color);
+        }
+
+        /* Common mistakes section */
+        .common-mistakes-container {
+            background-color: #fff5f5;
+            border: 1px solid #ffd1d1;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .mistake-heading {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--bad-color);
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ffd1d1;
+        }
+
+        .mistake-block {
+            background-color: var(--primary-bg);
+            border-left: 3px solid var(--bad-color);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mistake-block h5 {
+            color: var(--bad-color);
+            font-size: 1.1em;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .mistake-description {
+            font-style: italic;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .fix-explanation {
+            color: var(--good-color);
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        /* Screenshot placeholders */
+        .screenshot-container {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #eaeaea;
+            border-radius: 8px;
+        }
+
+        .screenshot-placeholder i {
+            font-size: 32px;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .screenshot-placeholder p {
+            color: #777;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .annotation {
+            margin-top: 12px;
+            background-color: #fff9e6;
+            border: 1px solid #ffe066;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 0.95em;
+        }
+
+        .annotation-title {
+            font-weight: 600;
+            color: #775500;
+            margin-bottom: 5px;
+        }
+
+        .annotation ul, .annotation ol {
+            margin: 8px 0;
+            padding-left: 25px;
+            text-align: left;
+        }
+
+        .annotation li {
+            margin-bottom: 4px;
+        }
+
+        /* When to use lists */
+        .when-to-use-list {
+            padding-left: 0;
+            list-style-type: none;
+        }
+
+        .when-to-use-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .when-to-use-list li i {
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+
+        /* Two column grid */
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .page-title:after {
+                width: 200px;
+            }
+            
+            .two-column-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skill-title {
+                font-size: 1.1em;
+            }
+            
+            .skill-content.active {
+                padding: 20px 15px;
+            }
+        }
+
+        /* Fix for hidden elements */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Home Button -->
+    <a href="index.html" class="home-button">
+        <i class="fas fa-file-alt"></i>
+    </a>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            <h1 class="page-title">COSPACES CHEATSHEET</h1>
+            
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="search" id="search-input" class="search-input" placeholder="Search CoSpaces techniques (e.g., animation, click, quiz)...">
+            </div>
+            
+            <div id="results-info" class="results-info">
+                <span id="results-count">0</span> results found for "<span id="search-term"></span>"
+            </div>
+            
+            <div id="skills-container">
+                <!-- Infinite Animation Section -->
+                <div class="skill-card" data-keywords="animation repeat infinite loop character move walk idle">
+                    <div class="skill-header">
+                        <div class="skill-icon-container">
+                            <div class="skill-icon animation-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h3 class="skill-title">Infinite Animation</h3>
+                        </div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="skill-content">
+                        <p>Make a character play an animation that repeats forever, like walking, dancing, or waving. This is great for background characters that need to stay active.</p>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Block Setup</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>Screenshot: Infinite Animation Blocks</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">Key Blocks:</div>
+                                    <ul style="text-align: left;">
+                                        <li>When scene starts</li>
+                                        <li>Forever loop</li>
+                                        <li>Play animation (walk/dance/wave)</li>
+                                        <li>Wait (optional - for animation timing)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Examples</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>Screenshot: Example of Walking Character</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">Steps:</div>
+                                    <ol style="text-align: left;">
+                                        <li>Add "When scene starts" block</li>
+                                        <li>Add "Forever" loop block</li>
+                                        <li>Inside loop, add "Play animation" block</li>
+                                        <li>Select animation type (e.g., "walking")</li>
+                                        <li>Optional: Add "Wait" block if animation needs timing</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">When to Use</h3>
+                            <ul class="when-to-use-list">
+                                <li><i class="fas fa-check-circle"></i> For background characters that need continuous movement</li>
+                                <li><i class="fas fa-check-circle"></i> To make your scene feel alive and active</li>
+                                <li><i class="fas fa-check-circle"></i> For decorative elements like animals or people in a scene</li>
+                                <li><i class="fas fa-check-circle"></i> For characters that need to show continuous behavior (like dancing)</li>
+                            </ul>
+                        </div>
+
+                        <div class="common-mistakes-container">
+                            <h3 class="mistake-heading">Common Mistakes</h3>
+                            
+                            <div class="mistake-block">
+                                <h5>Missing the Loop</h5>
+                                <p class="mistake-description">Only adding a single "Play animation" block without a Forever loop</p>
+                                <p>If you don't use a "Forever" loop, the animation will only play once and then stop.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Missing Forever Loop</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Always wrap your animation in a Forever loop for continuous play.</p>
+                            </div>
+                            
+                            <div class="mistake-block">
+                                <h5>Animation Jumping</h5>
+                                <p class="mistake-description">Not adding proper timing with Wait blocks</p>
+                                <p>Some animations need time to complete, and without a Wait block, the animation might restart too quickly, looking jumpy.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Missing Wait Block</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Add a "Wait" block after the animation to give it time to finish smoothly.</p>
+                            </div>
+                            
+                            <div class="mistake-block">
+                                <h5>Animation Conflict</h5>
+                                <p class="mistake-description">Multiple scripts trying to animate the same character</p>
+                                <p>If you have more than one script with Forever loops trying to animate the same character, they'll conflict and the animation will look glitchy.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Multiple Animation Scripts</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Keep only one Forever animation loop per character, or use conditions to control when each animation should play.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Click to Talk Section -->
+                <div class="skill-card" data-keywords="click tap talk speech bubble message character interactive">
+                    <div class="skill-header">
+                        <div class="skill-icon-container">
+                            <div class="skill-icon talk-icon">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <h3 class="skill-title">Click to Talk</h3>
+                        </div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="skill-content">
+                        <p>Make a character display a speech bubble or play a sound when clicked/tapped. This creates interactive characters that can provide information or dialogue.</p>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Block Setup</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>Screenshot: Click to Talk Blocks</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">Key Blocks:</div>
+                                    <ul style="text-align: left;">
+                                        <li>When item clicked</li>
+                                        <li>Say (speech bubble)</li>
+                                        <li>Play sound (optional)</li>
+                                        <li>Wait (to control how long message displays)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Examples</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>Screenshot: Character with Speech Bubble</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">Steps:</div>
+                                    <ol style="text-align: left;">
+                                        <li>Add "When item clicked" block to your character</li>
+                                        <li>Add "Say" block and type your message</li>
+                                        <li>Optional: Add "Play sound" for voice effect</li>
+                                        <li>Add "Wait" block (e.g., 3 seconds) to keep message visible</li>
+                                        <li>Optional: Add "Say nothing" to clear bubble after waiting</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">When to Use</h3>
+                            <ul class="when-to-use-list">
+                                <li><i class="fas fa-check-circle"></i> For interactive characters in a digital story</li>
+                                <li><i class="fas fa-check-circle"></i> To provide information about objects or places in your scene</li>
+                                <li><i class="fas fa-check-circle"></i> To create dialogue between characters in a game</li>
+                                <li><i class="fas fa-check-circle"></i> For tour guides in virtual field trips</li>
+                            </ul>
+                        </div>
+
+                        <div class="common-mistakes-container">
+                            <h3 class="mistake-heading">Common Mistakes</h3>
+                            
+                            <div class="mistake-block">
+                                <h5>Message Disappears Too Quickly</h5>
+                                <p class="mistake-description">Forgetting to add a Wait block after the Say block</p>
+                                <p>Without a Wait block, the message might disappear too quickly for the player to read it.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Missing Wait Block After Say</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Always add a "Wait" block after your "Say" block to give users time to read.</p>
+                            </div>
+                            
+                            <div class="mistake-block">
+                                <h5>Speech Bubble Stays Forever</h5>
+                                <p class="mistake-description">Not clearing the speech bubble</p>
+                                <p>If you don't add a "Say nothing" block after the Wait, the speech bubble will stay visible indefinitely.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Missing "Say nothing" Block</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Add a "Say nothing" block after the Wait to clear the speech bubble.</p>
+                            </div>
+                            
+                            <div class="mistake-block">
+                                <h5>Character Not Clickable</h5>
+                                <p class="mistake-description">Using the wrong event block or not enabling clickable objects</p>
+                                <p>If your character doesn't respond to clicks, you might be using the wrong event trigger or haven't made objects clickable in CoSpaces settings.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Settings for Clickable Objects</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Make sure you're using the "When item clicked" block (not "When scene starts") and check that your project settings allow object interaction.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="skill-card" data-keywords="quiz questions answers multiple choice test score game">
+                    <div class="skill-header">
+                        <div class="skill-icon-container">
+                            <div class="skill-icon quiz-icon">
+                                <i class="fas fa-question"></i>
+                            </div>
+                            <h3 class="skill-title">Making a Quiz</h3>
+                        </div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="skill-content">
+                        <p>Create an interactive quiz with questions, multiple-choice answers, and score tracking. This is perfect for educational games, assessments, or review activities.</p>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Block Setup</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>Screenshot: Quiz System Blocks</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">Key Blocks:</div>
+                                    <ul style="text-align: left;">
+                                        <li>Variables (for score and current question)</li>
+                                        <li>When item clicked (for answer choices)</li>
+                                        <li>If/Then blocks (to check answers)</li>
+                                        <li>Say block (for feedback)</li>
+                                        <li>Set variable (to track score)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Examples</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>Screenshot: Simple Quiz Setup</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">Steps for Basic Quiz:</div>
+                                    <ol style="text-align: left;">
+                                        <li>Create a variable called "score" starting at 0</li>
+                                        <li>Add question text using a 3D text object</li>
+                                        <li>Add objects for each answer choice (A, B, C)</li>
+                                        <li>For each answer object, add "When item clicked" block</li>
+                                        <li>Inside, use "If/Then" to check if it's the correct answer</li>
+                                        <li>If correct, add +1 to score and show positive feedback</li>
+                                        <li>If wrong, show feedback about the correct answer</li>
+                                        <li>Add "Wait" then code to show the next question</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">When to Use</h3>
+                            <ul class="when-to-use-list">
+                                <li><i class="fas fa-check-circle"></i> For educational activities to test knowledge</li>
+                                <li><i class="fas fa-check-circle"></i> In scavenger hunts or treasure hunts</li>
+                                <li><i class="fas fa-check-circle"></i> To create interactive review games</li>
+                                <li><i class="fas fa-check-circle"></i> For class assessments or learning checks</li>
+                            </ul>
+                        </div>
+
+                        <div class="common-mistakes-container">
+                            <h3 class="mistake-heading">Common Mistakes</h3>
+                            
+                            <div class="mistake-block">
+                                <h5>Not Using Variables</h5>
+                                <p class="mistake-description">Trying to track score without variables</p>
+                                <p>Without using a variable to keep score, your quiz can't remember how many questions the player answered correctly.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Creating Score Variable</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Create a "score" variable and use "Set variable" blocks to increase it when answers are correct.</p>
+                            </div>
+                            
+                            <div class="mistake-block">
+                                <h5>Quiz Gets Stuck</h5>
+                                <p class="mistake-description">Not having a way to move between questions</p>
+                                <p>If you don't add code to move to the next question after an answer is selected, your quiz will get stuck on the first question.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Next Question System</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Create a variable to track current question and code that shows the next question when an answer is clicked.</p>
+                            </div>
+                            
+                            <div class="mistake-block">
+                                <h5>Confusing Feedback</h5>
+                                <p class="mistake-description">Not providing clear feedback on answers</p>
+                                <p>If you don't tell the player whether their answer was correct or incorrect, they won't know how they're doing.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Feedback System</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Add "Say" blocks or feedback text to clearly indicate correct and incorrect answers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Panel Section -->
+                <div class="skill-card" data-keywords="info panel information display interface ui popup facts data">
+                    <div class="skill-header">
+                        <div class="skill-icon-container">
+                            <div class="skill-icon panel-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <h3 class="skill-title">Info Panels</h3>
+                        </div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="skill-content">
+                        <p>Create information panels that appear when objects are clicked, showing text, images or additional details. These are great for educational tours or interactive exhibits.</p>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Block Setup</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>Screenshot: Info Panel System Blocks</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">Key Blocks:</div>
+                                    <ul style="text-align: left;">
+                                        <li>When item clicked</li>
+                                        <li>Show/Hide item blocks</li>
+                                        <li>Set text blocks (for dynamic text)</li>
+                                        <li>Color and position blocks</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Examples</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>Screenshot: Info Panel Example</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">Steps for Basic Info Panel:</div>
+                                    <ol style="text-align: left;">
+                                        <li>Create a panel using a flat rectangle or cube</li>
+                                        <li>Add text objects on top of the panel</li>
+                                        <li>Keep the panel hidden at start (in properties or with code)</li>
+                                        <li>Add "When item clicked" to the object that should trigger the panel</li>
+                                        <li>Add "Show item" block for the panel</li>
+                                        <li>Create a close button with "When item clicked" and "Hide item" blocks</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">When to Use</h3>
+                            <ul class="when-to-use-list">
+                                <li><i class="fas fa-check-circle"></i> For virtual museum or gallery tours</li>
+                                <li><i class="fas fa-check-circle"></i> To provide additional facts in educational projects</li>
+                                <li><i class="fas fa-check-circle"></i> For interactive diagrams or models</li>
+                                <li><i class="fas fa-check-circle"></i> To create in-game help screens or instructions</li>
+                            </ul>
+                        </div>
+
+                        <div class="common-mistakes-container">
+                            <h3 class="mistake-heading">Common Mistakes</h3>
+                            
+                            <div class="mistake-block">
+                                <h5>No Way to Close Panel</h5>
+                                <p class="mistake-description">Forgetting to add a close button or function</p>
+                                <p>If you don't add a way to close or hide the info panel, it will stay on screen permanently after being opened.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Close Button Setup</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Always add a close button with "When clicked" and "Hide item" blocks for your panel.</p>
+                            </div>
+                            
+                            <div class="mistake-block">
+                                <h5>Panel Blocks the View</h5>
+                                <p class="mistake-description">Poor positioning of the info panel</p>
+                                <p>If your panel appears in the center of the screen or covers important elements, it can block the user's view of the scene.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Panel Positioning</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Position panels at the edges of the screen or make them semi-transparent so they don't completely block the view.</p>
+                            </div>
+                            
+                            <div class="mistake-block">
+                                <h5>Text Too Small or Dense</h5>
+                                <p class="mistake-description">Putting too much text or using small font sizes</p>
+                                <p>If your text is too small or if there's too much of it, users won't be able to read it easily, especially on mobile devices.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Text Formatting</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Use large, clear text with short paragraphs. Consider breaking information into multiple panels if needed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Character Path Section -->
+                <div class="skill-card" data-keywords="path waypoint movement walk route character follow travel animation">
+                    <div class="skill-header">
+                        <div class="skill-icon-container">
+                            <div class="skill-icon path-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <h3 class="skill-title">Character Paths</h3>
+                        </div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="skill-content">
+                        <p>Make characters move along specific paths in your scene. You can create patrols, guided tours, or animated journeys that follow predefined routes.</p>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Block Setup</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>Screenshot: Character Path Blocks</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">Key Blocks:</div>
+                                    <ul style="text-align: left;">
+                                        <li>When scene starts (or other trigger)</li>
+                                        <li>Move to position</li>
+                                        <li>Wait blocks (for timing)</li>
+                                        <li>Turn to face direction (optional)</li>
+                                        <li>Play animation (optional)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Examples</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>Screenshot: Character Following a Path</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">Steps for Basic Path:</div>
+                                    <ol style="text-align: left;">
+                                        <li>Add "When scene starts" block (or another trigger)</li>
+                                        <li>Add "Play animation" block (e.g., "walking")</li>
+                                        <li>Add "Move to position" block with coordinates of first waypoint</li>
+                                        <li>Add "Wait" block to give character time to reach position</li>
+                                        <li>Add "Turn to face" block to rotate toward next waypoint (optional)</li>
+                                        <li>Repeat steps 3-5 for each waypoint in the path</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Advanced Path Features</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>Screenshot: Loop Path with Talking</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">Advanced Features:</div>
+                                    <ul style="text-align: left;">
+                                        <li>Add a Forever loop to make characters patrol</li>
+                                        <li>Use "Say" blocks at specific waypoints to narrate</li>
+                                        <li>Add "If/Then" blocks to create conditional paths</li>
+                                        <li>Use variables to track which waypoint the character is at</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">When to Use</h3>
+                            <ul class="when-to-use-list">
+                                <li><i class="fas fa-check-circle"></i> For non-player characters (NPCs) in games</li>
+                                <li><i class="fas fa-check-circle"></i> To create guided tours of virtual spaces</li>
+                                <li><i class="fas fa-check-circle"></i> For animations showing historical journeys or processes</li>
+                                <li><i class="fas fa-check-circle"></i> To demonstrate routes or paths in geography/map projects</li>
+                            </ul>
+                        </div>
+
+                        <div class="common-mistakes-container">
+                            <h3 class="mistake-heading">Common Mistakes</h3>
+                            
+                            <div class="mistake-block">
+                                <h5>Character Doesn't Reach Destination</h5>
+                                <p class="mistake-description">Not waiting long enough between movement commands</p>
+                                <p>If you don't add enough wait time between "Move to position" blocks, the character will start moving to the next position before reaching the current one.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Proper Wait Timing</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Add appropriate "Wait" blocks after each movement command to give the character time to complete the movement.</p>
+                            </div>
+                            
+                            <div class="mistake-block">
+                                <h5>Character Slides Without Walking Animation</h5>
+                                <p class="mistake-description">Forgetting to add walking animation</p>
+                                <p>If you make a character move without playing a walking animation, they'll slide across the ground unnaturally.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Adding Walk Animation</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Always add a "Play animation" block with "walking" before movement commands.</p>
+                            </div>
+                            
+                            <div class="mistake-block">
+                                <h5>Character Faces Wrong Direction</h5>
+                                <p class="mistake-description">Not setting the correct orientation</p>
+                                <p>Characters may move to the right position but face the wrong way if you don't use "Turn to face" blocks.</p>
+                                <div class="screenshot-placeholder" style="height: 120px;">
+                                    <p>Screenshot: Turn to Face Block</p>
+                                </div>
+                                <p class="fix-explanation">Fix: Use "Turn to face" blocks to make sure the character is oriented correctly for each segment of the path.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Skill card expandable content
+            const skillHeaders = document.querySelectorAll('.skill-header');
+            const searchInput = document.getElementById('search-input');
+            const skillsContainer = document.getElementById('skills-container');
+            const skillCards = document.querySelectorAll('.skill-card');
+            const resultsInfo = document.getElementById('results-info');
+            const resultsCount = document.getElementById('results-count');
+            const searchTerm = document.getElementById('search-term');
+            
+            // Toggle skill content
+            skillHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const arrow = this.querySelector('.toggle-arrow');
+                    
+                    if (content.classList.contains('active')) {
+                        content.classList.remove('active');
+                        arrow.classList.remove('rotate-arrow');
+                    } else {
+                        content.classList.add('active');
+                        arrow.classList.add('rotate-arrow');
+                    }
+                });
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                let matchCount = 0;
+                
+                // Show/hide results info based on search query
+                if (query.length > 0) {
+                    resultsInfo.style.display = 'block';
+                    searchTerm.textContent = query;
+                } else {
+                    resultsInfo.style.display = 'none';
+                }
+                
+                skillCards.forEach(card => {
+                    const cardTitle = card.querySelector('.skill-title').textContent.toLowerCase();
+                    const cardContent = card.textContent.toLowerCase();
+                    const cardKeywords = card.getAttribute('data-keywords').toLowerCase();
+                    
+                    // Check if card matches the search
+                    if (query === '' || 
+                        cardTitle.includes(query) || cardContent.includes(query) || 
+                        cardKeywords.includes(query)) {
+                        card.classList.remove('hidden');
+                        matchCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+                
+                // Update results count
+                resultsCount.textContent = matchCount;
+                
+                // If there's only one result, expand it automatically
+                if (matchCount === 1 && query !== '') {
+                    const visibleCard = document.querySelector('.skill-card:not(.hidden)');
+                    const content = visibleCard.querySelector('.skill-content');
+                    const arrow = visibleCard.querySelector('.toggle-arrow');
+                    
+                    if (!content.classList.contains('active')) {
+                        content.classList.add('active');
+                        arrow.classList.add('rotate-arrow');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

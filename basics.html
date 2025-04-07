@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoSpaces Basics Tutorial</title>
+    <link rel="stylesheet" href="basics-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/intro.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.min.css">
+</head>
+<body>
+    <div class="tutorial-container">
+        <!-- Left Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-logo">COSPACES<br>BASICS</div>
+            <div class="step-button active" data-step="0" data-tooltip="Introduction">
+                <i class="fas fa-list-ol"></i>
+            </div>
+            <div class="step-button" data-step="1" data-tooltip="Basic Controls">
+                <span>1</span>
+            </div>
+            <div class="step-button" data-step="2" data-tooltip="Adding Objects">
+                <span>2</span>
+            </div>
+            <div class="step-button" data-step="3" data-tooltip="Manipulating Objects">
+                <span>3</span>
+            </div>
+            <div class="step-button" data-step="4" data-tooltip="Editing Properties">
+                <span>4</span>
+            </div>
+            <div class="step-button" data-step="5" data-tooltip="Building Objects">
+                <span>5</span>
+            </div>
+            <div class="step-button" data-step="6" data-tooltip="Keyboard Shortcuts">
+                <span>6</span>
+            </div>
+        </div>
+
+        <!-- Middle Instructions Panel -->
+        <div class="instructions-panel">
+            <h1 id="current-step-title">Introduction</h1>
+            
+            <div id="step-instructions">
+                <!-- Will be populated by JavaScript -->
+                <h3>Learning Intentions and Success Criteria</h3>
+                
+                <div class="card">
+                    <p><strong>Learning Intentions:</strong></p>
+                    <ol class="steps-list">
+                        <li>Navigate effectively in a CoSpaces environment</li>
+                        <li>Add and manipulate objects in your workspace</li>
+                        <li>Edit object properties and create custom shapes</li>
+                    </ol>
+                
+                    <p><strong>Success Criteria:</strong></p>
+                    <ol class="steps-list">
+                        <li>Confidently navigate the 3D space</li>
+                        <li>Add and position multiple objects</li>
+                        <li>Edit object properties (color, animations)</li>
+                        <li>Create custom-sized building objects</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="navigation">
+                <button id="prevButton" class="nav-button" disabled><i class="fas fa-arrow-left"></i> Previous</button>
+                <button id="nextButton" class="nav-button">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-text">Progress: <span id="progress-percentage">0%</span></div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <div class="footer">
+                Made with <span style="color: var(--accent-color);">♥</span> by <span id="creator-name">Buckley</span>
+            </div>
+        </div>
+
+        <!-- Right Content Display Area -->
+        <div class="content-display">
+            <div class="card">
+                <h2 id="content-title">Introduction</h2>
+                <div id="media-content">
+                    <!-- Will be populated by JavaScript -->
+                    <div class="alert-box alert-info">
+                        <p><strong>Tutorial Overview</strong></p>
+                        <p>Welcome to the CoSpaces Basics tutorial! In this guide, you'll learn how to navigate, add objects, and create in CoSpaces.</p>
+                    </div>
+
+                    <div class="alert-box alert-warning">
+                        <p><strong><i class="fas fa-info-circle"></i> How to use this resource</strong></p>
+                        <p>Click the button below to learn how to navigate this tutorial.</p>
+                        <button id="startWalkthrough" class="nav-button">
+                            <i class="fas fa-walking"></i> Start Interactive Tour
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for viewing images -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img id="modalImage" class="modal-content">
+    </div>
+
+    <script>
+        // Tutorial content configuration
+        // Define your step titles
+        const stepTitles = [
+            "Introduction",
+            "Basic Controls",
+            "Adding Objects",
+            "Manipulating Objects",
+            "Editing Properties",
+            "Building Objects",
+            "Keyboard Shortcuts"
+        ];
+
+        // Define your step instructions (middle panel content)
+        const stepInstructions = [
+            // Step 0: Introduction
+            `<h3>Introduction to CoSpaces</h3>
+            
+            <div class="card">
+                <p><strong>Learning Intentions:</strong></p>
+                <ol class="steps-list">
+                    <li>Navigate effectively in a CoSpaces environment</li>
+                    <li>Add and manipulate objects in your workspace</li>
+                    <li>Edit object properties and create custom shapes</li>
+                </ol>
+            
+                <p><strong>Success Criteria:</strong></p>
+                <ol class="steps-list">
+                    <li>Confidently navigate the 3D space</li>
+                    <li>Add and position multiple objects</li>
+                    <li>Edit object properties (color, animations)</li>
+                    <li>Create custom-sized building objects</li>
+                </ol>
+            </div>`,
+            
+            // Step 1: Basic Controls
+            `<h3>Basic Controls</h3>
+            <p>In this step, you'll learn how to navigate in CoSpaces.</p>
+            
+            <div class="card">
+                <h4>Navigation Controls:</h4>
+                <ol class="steps-list">
+                    <li><strong>Panning:</strong> Hold space and drag the left mouse button to move around the scene</li>
+                    <li><strong>Rotating:</strong> Hold the left mouse button and drag to orbit around</li>
+                    <li><strong>Zooming:</strong> Use the mouse wheel or two finger scroll on your trackpad to zoom in and out of the scene</li>
+                </ol>
+            </div>
+            
+            `,
+            
+            // Step 2: Adding Objects
+            `<h3>Adding Objects from Library</h3>
+            <p>Learn how to add objects from the CoSpaces library into your scene.</p>
+            
+            <div class="card">
+                <h4>Adding Objects:</h4>
+                <ol class="steps-list">
+                    <li>Click on the Library button in the left toolbar</li>
+                    <li>Browse through the categories or use the search function to find an object</li>
+                    <li>Click and drag an object into your scene</li>
+                </ol>
+            </div>
+            
+            <div class="alert-box alert-info">
+                <p><strong><i class="fas fa-lightbulb"></i> Tip:</strong></p>
+                <p>You can use the search function to quickly find specific objects like "tree," "house," or "character."</p>
+            </div>`,
+            
+            // Step 3: Manipulating Objects
+            `<h3>Rotating, Scaling & Positioning Objects</h3>
+            <p>Now let's learn how to manipulate objects in your scene.</p>
+            
+            <div class="card">
+                <h4>Object Manipulation:</h4>
+                <ol class="steps-list">
+                    <li><strong>Select:</strong> Click on an object to select it (a bounding box will appear)</li>
+                    <li><strong>Move:</strong> Drag the object to move it around the ground plane</li>
+                    <li><strong>Lift/Lower:</strong> Use the up/down arrow above the object to change its height</li>
+                    <li><strong>Rotate:</strong> Click and drag the rotation circles to rotate around different axes</li>
+                    <li><strong>Scale:</strong> Click and drag the corner handles to resize the object</li>
+                </ol>
+            </div>
+            
+            <div class="alert-box alert-warning">
+                <p><strong><i class="fas fa-exclamation-triangle"></i> Important:</strong></p>
+                <p>The red, green, and blue arrows represent the X, Y, and Z axes respectively. This color-coding helps with precise positioning.</p>
+            </div>`,
+            
+            // Step 4: Editing Properties
+            `<h3>Editing Object Properties</h3>
+            <p>Learn how to edit more advanced properties of your objects.</p>
+            
+            <div class="card">
+                <h4>Editing Object Properties:</h4>
+                <ol class="steps-list">
+                    <li><strong>Double-click</strong> on any object to open its properties panel</li>
+                    <li>Add <strong>animations</strong> by selecting from the animations dropdown</li>
+                    <li>Change <strong>material colour</strong> by clicking on the colour options</li>
+                </ol>
+            </div>
+            
+            <div class="alert-box alert-info">
+                <p><strong><i class="fas fa-lightbulb"></i> Tip:</strong></p>
+                <p>Some objects have special properties specific to their type. Characters may have pose options, while vehicles might have unique movement settings.</p>
+            </div>`,
+            
+            // Step 5: Building Objects
+            `<h3>Creating Custom Building Objects</h3>
+            <p>Learn how to create custom-sized building objects like walls, floors, and ramps.</p>
+            
+            <div class="card">
+                <h4>Creating Building Objects:</h4>
+                <ol class="steps-list">
+                    <li>Click on the <strong>Building</strong> category in the library</li>
+                    <li>Select a building object type (wall, floor, ramp, etc.)</li>
+                    <li>Click in your scene to place the object</li>
+                    <li>While selected, use the <strong>width handle</strong> (red arrow) to adjust the width</li>
+                    <li>Use the <strong>length handle</strong> (green arrow) to adjust the length</li>
+                    <li>Use the <strong>height handle</strong> (blue arrow) to adjust the height</li>
+                    <li>Double-click to edit material, color, and texture properties</li>
+                </ol>
+            </div>
+            
+            <div class="alert-box alert-warning">
+                <p><strong><i class="fas fa-exclamation-triangle"></i> Important:</strong></p>
+                <p>Building objects are excellent for creating custom environments like houses, mazes, or platforms. Combine different shapes to create complex structures.</p>
+            </div>`,
+            
+            // Step 6: Keyboard Shortcuts
+            `<div class="alert-box alert-info">
+                <p><strong>CoSpaces Keyboard Shortcuts Reference</strong></p>
+            </div>`
+            
+        ];
+
+        // Define your media content (right panel)
+        const stepMedia = [
+            // Step 0: Introduction
+            `<div class="alert-box alert-info">
+                <p><strong>Tutorial Overview</strong></p>
+                <p>Welcome to the CoSpaces Basics tutorial! In this guide, you'll learn how to navigate, add objects, and create in CoSpaces.</p>
+            </div>
+
+            <div class="alert-box alert-warning">
+                <p><strong><i class="fas fa-info-circle"></i> How to use this resource</strong></p>
+                <p>Click the button below to learn how to navigate this tutorial.</p>
+                <button id="startWalkthrough" class="nav-button">
+                    <i class="fas fa-walking"></i> Start Interactive Tour
+                </button>
+            </div>`,
+            
+            // Step 1: Basic Controls - Video
+            `<div class="video-container">
+                <video width="100%" controls autoplay loop muted playsinline>
+                    <source src="https://i.imgur.com/bGdZVNI.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div class="alert-box alert-info">
+                <p><strong>Navigation Practice</strong></p>
+                <p>Try opening CoSpaces and practice these navigation controls:</p>
+                <ul class="steps-list">
+                    <li>Pan around using the right mouse button</li>
+                    <li>Rotate the view using the left mouse button</li>
+                    <li>Zoom in and out with the mouse wheel</li>
+                </ul>
+            </div>`,
+            
+            // Step 2: Adding Objects - Video
+            `<div class="video-container">
+                <video width="100%" controls autoplay loop muted playsinline>
+                    <source src="https://i.imgur.com/dnclQOJ.mp4mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div class="alert-box alert-info">
+                <p><strong>Object Categories</strong></p>
+                <p>The CoSpaces library contains several categories:</p>
+                <ul class="steps-list">
+                    <li>Characters & Animals</li>
+                    <li>Buildings & Structures</li>
+                    <li>Furniture & Props</li>
+                    <li>Nature & Plants</li>
+                    <li>Vehicles & Transportation</li>
+                </ul>
+            </div>`,
+            
+            // Step 3: Manipulating Objects - Video
+            `<div class="video-container">
+                <video width="100%" controls autoplay loop muted playsinline>
+                    <source src="https://i.imgur.com/xPTTI0k.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div class="alert-box alert-info">
+                <p><strong>Selection Tips</strong></p>
+                <p>When working with multiple objects:</p>
+                <ul class="steps-list">
+                    <li>Hold SHIFT while clicking to select multiple objects</li>
+                    <li>Press CTRL+A (or CMD+A on Mac) to select all objects</li>
+                    <li>Press ESC to deselect all objects</li>
+                </ul>
+            </div>`,
+            
+            // Step 4: Editing Properties - Video
+            `<div class="video-container">
+                <video width="100%" controls autoplay loop muted playsinline>
+                    <source src="https://i.imgur.com/zIaVj0E.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            `,
+            
+            // Step 5: Building Objects - Video
+            `<div class="video-container">
+                <video width="100%" controls autoplay loop muted playsinline>
+                    <source src="https://i.imgur.com/qkpUl9i.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div class="alert-box alert-info">
+                <p><strong>Building Project Ideas</strong></p>
+                <p>Try creating one of these simple projects:</p>
+                <ul class="steps-list">
+                    <li>A simple house with walls, floor, and roof</li>
+                    <li>A maze with walls of different heights</li>
+                    <li>A city street with buildings and roads</li>
+                    <li>A playground with ramps and platforms</li>
+                </ul>
+            </div>`,
+            
+            // Step 6: Keyboard Shortcuts (no video needed)
+            `
+            
+            <div class="shortcut-category">
+                <h4>Navigation Shortcuts:</h4>
+                <div class="shortcut-grid">
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-arrows-alt"></i></div>
+                        <div class="control-text">
+                            <p><strong>Rotate camera view</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">Left Mouse Button</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-search"></i></div>
+                        <div class="control-text">
+                            <p><strong>Zoom in / out</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">Mouse Wheel</span>
+                                <span class="kbd">Two Finger Trackpad Scroll</span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-arrows-alt"></i></div>
+                        <div class="control-text">
+                            <p><strong>Move camera view</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">SPACE</span>
+                                <span class="kbd-plus">+</span>
+                                <span class="kbd">Left Mouse Button</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-crosshairs"></i></div>
+                        <div class="control-text">
+                            <p><strong>Zoom camera to mouse position</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">SPACE</span>
+                                <span class="kbd-plus">+</span>
+                                <span class="kbd">Right Mouse Button</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-expand"></i></div>
+                        <div class="control-text">
+                            <p><strong>Center in on selected object</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">V</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-eye"></i></div>
+                        <div class="control-text">
+                            <p><strong>View whole scene</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">C</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-search-plus"></i></div>
+                        <div class="control-text">
+                            <p><strong>Zoom in</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-search-minus"></i></div>
+                        <div class="control-text">
+                            <p><strong>Zoom out</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="shortcut-category">
+                <h4>Building Shortcuts:</h4>
+                <div class="shortcut-grid">
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-sync"></i></div>
+                        <div class="control-text">
+                            <p><strong>Rotation mode</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">R</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-th"></i></div>
+                        <div class="control-text">
+                            <p><strong>Turn grid snapping on/off</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">S</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-object-group"></i></div>
+                        <div class="control-text">
+                            <p><strong>Group/Ungroup selected objects</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">G</span>
+                                <span class="kbd-plus">/</span>
+                                <span class="kbd">U</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-clone"></i></div>
+                        <div class="control-text">
+                            <p><strong>Duplicate and move</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">ALT</span>
+                                <span class="kbd-plus">+</span>
+                                <span class="kbd">Left Mouse Button</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-check-square"></i></div>
+                        <div class="control-text">
+                            <p><strong>Select all objects</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">CTRL</span>
+                                <span class="kbd-plus">+</span>
+                                <span class="kbd">A</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-copy"></i></div>
+                        <div class="control-text">
+                            <p><strong>Copy selected object(s)</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">CTRL</span>
+                                <span class="kbd-plus">+</span>
+                                <span class="kbd">C</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-paste"></i></div>
+                        <div class="control-text">
+                            <p><strong>Paste object(s)</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">CTRL</span>
+                                <span class="kbd-plus">+</span>
+                                <span class="kbd">V</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-times-circle"></i></div>
+                        <div class="control-text">
+                            <p><strong>Deselect object(s)</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">CTRL</span>
+                                <span class="kbd-plus">+</span>
+                                <span class="kbd">D</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="shortcut-category">
+                <h4>CoBlocks Shortcuts:</h4>
+                <div class="shortcut-grid">
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-copy"></i></div>
+                        <div class="control-text">
+                            <p><strong>Copy selected block(s)</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">CTRL</span>
+                                <span class="kbd-plus">+</span>
+                                <span class="kbd">C</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-paste"></i></div>
+                        <div class="control-text">
+                            <p><strong>Paste blocks</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">CTRL</span>
+                                <span class="kbd-plus">+</span>
+                                <span class="kbd">V</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon"><i class="fas fa-code"></i></div>
+                        <div class="control-text">
+                            <p><strong>Copy all blocks from current workspace</strong></p>
+                            <div class="kbd-combo">
+                                <span class="kbd">CTRL</span>
+                                <span class="kbd-plus">+</span>
+                                <span class="kbd">A</span>
+                                <span class="kbd-plus">+</span>
+                                <span class="kbd">C</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+        ];
+
+        // Current step tracking
+        let currentStep = 0;
+        const totalSteps = stepInstructions.length;
+
+        // DOM Elements
+        const stepButtons = document.querySelectorAll('.step-button');
+        const stepTitleEl = document.getElementById('current-step-title');
+        const instructionsPanel = document.getElementById('step-instructions');
+        const mediaContent = document.getElementById('media-content');
+        const contentTitle = document.getElementById('content-title');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const progressBar = document.querySelector('.progress');
+        const progressPercentage = document.getElementById('progress-percentage');
+
+        // Image modal
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalClose = document.querySelector('.modal-close');
+
+        // Initialize the tutorial
+        function showStep(step) {
+            // Update active step button
+            stepButtons.forEach((button, index) => {
+                button.classList.toggle('active', index === step);
+            });
+
+            // Update step title
+            stepTitleEl.textContent = stepTitles[step];
+            contentTitle.textContent = stepTitles[step];
+
+            // Update content
+            instructionsPanel.innerHTML = stepInstructions[step];
+            mediaContent.innerHTML = stepMedia[step];
+
+            // Update navigation buttons
+            prevButton.disabled = step === 0;
+            nextButton.style.display = step === totalSteps - 1 ? 'none' : 'flex';
+            
+            // Update progress
+            const progress = Math.round(((step + 1) / totalSteps) * 100);
+            progressBar.style.width = `${progress}%`;
+            progressPercentage.textContent = `${progress}%`;
+            
+            // Reinitialize walkthrough button if we're on the first step
+            if (step === 0) {
+                setTimeout(() => {
+                    const startWalkthroughBtn = document.getElementById('startWalkthrough');
+                    if (startWalkthroughBtn) {
+                        startWalkthroughBtn.addEventListener('click', startIntroJs);
+                    }
+                }, 100);
+            }
+            
+            currentStep = step;
+        }
+
+        // Simple tooltip implementation
+        function setupTooltips() {
+            // Remove any existing tooltips
+            const existingTooltips = document.querySelectorAll('.tooltip');
+            existingTooltips.forEach(t => t.remove());
+            
+            // Create new tooltip element
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            document.body.appendChild(tooltip);
+            
+            // Add event listeners to all step buttons
+            const stepButtons = document.querySelectorAll('.step-button');
+            stepButtons.forEach(button => {
+                const tooltipText = button.getAttribute('data-tooltip');
+                if (!tooltipText) return;
+                
+                // On mouse enter
+                button.addEventListener('mouseenter', () => {
+                    // Set tooltip text
+                    tooltip.textContent = tooltipText;
+                    
+                    // Position tooltip based on viewport width
+                    const rect = button.getBoundingClientRect();
+                    if (window.innerWidth <= 1024) {
+                        // Position below on mobile
+                        tooltip.className = 'tooltip bottom';
+                        tooltip.style.top = `${rect.bottom + 10}px`;
+                        tooltip.style.left = `${rect.left + rect.width/2}px`;
+                        tooltip.style.transform = 'translateX(-50%)';
+                    } else {
+                        // Position to the right on desktop
+                        tooltip.className = 'tooltip right';
+                        tooltip.style.top = `${rect.top + rect.height/2}px`;
+                        tooltip.style.left = `${rect.right + 10}px`;
+                        tooltip.style.transform = 'translateY(-50%)';
+                    }
+                    
+                    // Make tooltip visible
+                    tooltip.style.opacity = '1';
+                });
+                
+                // On mouse leave
+                button.addEventListener('mouseleave', () => {
+                    tooltip.style.opacity = '0';
+                });
+            });
+        }
+
+        // Event Listeners
+        stepButtons.forEach((button, index) => {
+            button.addEventListener('click', () => showStep(index));
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (currentStep > 0) showStep(currentStep - 1);
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentStep < totalSteps - 1) showStep(currentStep + 1);
+        });
+
+        // Image modal functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'IMG' && e.target.parentElement.classList.contains('image-container')) {
+                modal.style.display = 'block';
+                modalImg.src = e.target.src;
+                modalImg.alt = e.target.alt;
+            }
+        });
+
+        modalClose.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Creator name with confetti
+        document.getElementById('creator-name').addEventListener('click', () => {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.8 },
+                colors: ['#002654', '#f7f7f7', '#f0f0f0', '#191919']
+            });
+        });
+
+        // Initialize introjs walkthrough
+        function startIntroJs() {
+            const intro = introJs();
+            
+            intro.setOptions({
+                steps: [
+                    {
+                        element: document.querySelector('.sidebar'),
+                        intro: 'Use these numbered icons to navigate between different steps of the tutorial. Click on any number to jump directly to that step.',
+                        position: 'right'
+                    },
+                    {
+                        element: document.querySelector('.instructions-panel'),
+                        intro: 'Read the step-by-step instructions in this middle panel. These detailed instructions will guide you through each part of the tutorial.',
+                        position: 'right'
+                    },
+                    {
+                        element: document.querySelector('.content-display'),
+                        intro: 'View demonstration videos that show exactly how to perform each action in CoSpaces.',
+                        position: 'left'
+                    },
+                    {
+                        element: document.querySelector('.navigation'),
+                        intro: 'Use these buttons to move forward and backward through the tutorial steps.',
+                        position: 'top'
+                    },
+                    {
+                        element: document.getElementById('current-step-title'),
+                        intro: 'This shows which step you are currently viewing. Always check this to know where you are in the tutorial.',
+                        position: 'bottom'
+                    }
+                ],
+                showBullets: true,
+                showProgress: true,
+                disableInteraction: false,
+                doneLabel: 'Got it!'
+            });
+            
+            intro.start();
+            
+            // After tour completes, show a success message
+            intro.oncomplete(function() {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#002654', '#f7f7f7', '#f0f0f0', '#191919']
+                });
+            });
+        }
+
+        // Initialize with first step and set up tooltips
+        document.addEventListener('DOMContentLoaded', () => {
+            showStep(0);
+            setupTooltips();
+            
+            // Add event listener to walkthrough button
+            const startWalkthroughBtn = document.getElementById('startWalkthrough');
+            if (startWalkthroughBtn) {
+                startWalkthroughBtn.addEventListener('click', startIntroJs);
+            }
+            
+            // Update tooltips on window resize
+            window.addEventListener('resize', () => {
+                setupTooltips();
+            });
+            
+            // Update tooltips whenever a step button is clicked
+            document.querySelectorAll('.step-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    setTimeout(setupTooltips, 100);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
