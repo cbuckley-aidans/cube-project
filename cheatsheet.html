@@ -6,6 +6,14 @@
     <title>CoSpaces Cheatsheet</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon Icons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
     <style>
         :root {
             --accent-color: #002654;
@@ -266,53 +274,6 @@
             border-bottom: 1px solid var(--outline-color);
         }
 
-        /* Common mistakes section */
-        .common-mistakes-container {
-            background-color: #fff5f5;
-            border: 1px solid #ffd1d1;
-            border-radius: var(--border-radius);
-            padding: 25px;
-            margin-top: 25px;
-        }
-
-        .mistake-heading {
-            font-size: 1.2em;
-            font-weight: 600;
-            margin-top: 0;
-            margin-bottom: 15px;
-            color: var(--bad-color);
-            padding-bottom: 8px;
-            border-bottom: 1px solid #ffd1d1;
-        }
-
-        .mistake-block {
-            background-color: var(--primary-bg);
-            border-left: 3px solid var(--bad-color);
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .mistake-block h5 {
-            color: var(--bad-color);
-            font-size: 1.1em;
-            margin-top: 0;
-            margin-bottom: 5px;
-        }
-
-        .mistake-description {
-            font-style: italic;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .fix-explanation {
-            color: var(--good-color);
-            font-weight: 500;
-            margin-top: 10px;
-        }
-
         /* Screenshot placeholders */
         .screenshot-container {
             background-color: #f8f9fa;
@@ -324,25 +285,29 @@
 
         .screenshot-placeholder {
             width: 100%;
-            height: 200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #eaeaea;
-            border-radius: 8px;
-        }
-
-        .screenshot-placeholder i {
-            font-size: 32px;
-            color: #aaa;
+            text-align: center;
             margin-bottom: 15px;
         }
 
+        .screenshot-placeholder img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .screenshot-placeholder img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
         .screenshot-placeholder p {
+            margin-top: 10px;
             color: #777;
             font-weight: 500;
-            margin: 0;
         }
 
         .annotation {
@@ -395,6 +360,56 @@
             gap: 20px;
         }
 
+        /* Modal styles for image viewing */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+        }
+        
+        #imageCaption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 20px 0;
+            height: 50px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .page-title {
@@ -425,6 +440,13 @@
     </style>
 </head>
 <body>
+    <!-- Image Modal for viewing images full size -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="expandedImage">
+        <div id="imageCaption"></div>
+    </div>
+
     <!-- Floating Home Button -->
     <a href="index.html" class="home-button">
         <i class="fas fa-file-alt"></i>
@@ -463,7 +485,7 @@
                             <h3 class="subsection-heading">Block Setup</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <img src="https://placeholder.com/800x500" alt="Infinite Animation Blocks">
                                     <p>Screenshot: Infinite Animation Blocks</p>
                                 </div>
                                 <div class="annotation">
@@ -479,10 +501,10 @@
                         </div>
 
                         <div class="subsection-block">
-                            <h3 class="subsection-heading">Examples</h3>
+                            <h3 class="subsection-heading">EXTENSION</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <img src="https://placeholder.com/800x500" alt="Example of Walking Character">
                                     <p>Screenshot: Example of Walking Character</p>
                                 </div>
                                 <div class="annotation">
@@ -507,40 +529,6 @@
                                 <li><i class="fas fa-check-circle"></i> For characters that need to show continuous behavior (like dancing)</li>
                             </ul>
                         </div>
-
-                        <div class="common-mistakes-container">
-                            <h3 class="mistake-heading">Common Mistakes</h3>
-                            
-                            <div class="mistake-block">
-                                <h5>Missing the Loop</h5>
-                                <p class="mistake-description">Only adding a single "Play animation" block without a Forever loop</p>
-                                <p>If you don't use a "Forever" loop, the animation will only play once and then stop.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Missing Forever Loop</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Always wrap your animation in a Forever loop for continuous play.</p>
-                            </div>
-                            
-                            <div class="mistake-block">
-                                <h5>Animation Jumping</h5>
-                                <p class="mistake-description">Not adding proper timing with Wait blocks</p>
-                                <p>Some animations need time to complete, and without a Wait block, the animation might restart too quickly, looking jumpy.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Missing Wait Block</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Add a "Wait" block after the animation to give it time to finish smoothly.</p>
-                            </div>
-                            
-                            <div class="mistake-block">
-                                <h5>Animation Conflict</h5>
-                                <p class="mistake-description">Multiple scripts trying to animate the same character</p>
-                                <p>If you have more than one script with Forever loops trying to animate the same character, they'll conflict and the animation will look glitchy.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Multiple Animation Scripts</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Keep only one Forever animation loop per character, or use conditions to control when each animation should play.</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -562,7 +550,7 @@
                             <h3 class="subsection-heading">Block Setup</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <img src="https://i.imgur.com/lv549zK.png" alt="Click to Talk Blocks">
                                     <p>Screenshot: Click to Talk Blocks</p>
                                 </div>
                                 <div class="annotation">
@@ -578,10 +566,10 @@
                         </div>
 
                         <div class="subsection-block">
-                            <h3 class="subsection-heading">Examples</h3>
+                            <h3 class="subsection-heading">EXTENSION</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <img src="https://i.imgur.com/Dli5XsI.png" alt="Character with Speech Bubble">
                                     <p>Screenshot: Character with Speech Bubble</p>
                                 </div>
                                 <div class="annotation">
@@ -606,40 +594,6 @@
                                 <li><i class="fas fa-check-circle"></i> For tour guides in virtual field trips</li>
                             </ul>
                         </div>
-
-                        <div class="common-mistakes-container">
-                            <h3 class="mistake-heading">Common Mistakes</h3>
-                            
-                            <div class="mistake-block">
-                                <h5>Message Disappears Too Quickly</h5>
-                                <p class="mistake-description">Forgetting to add a Wait block after the Say block</p>
-                                <p>Without a Wait block, the message might disappear too quickly for the player to read it.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Missing Wait Block After Say</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Always add a "Wait" block after your "Say" block to give users time to read.</p>
-                            </div>
-                            
-                            <div class="mistake-block">
-                                <h5>Speech Bubble Stays Forever</h5>
-                                <p class="mistake-description">Not clearing the speech bubble</p>
-                                <p>If you don't add a "Say nothing" block after the Wait, the speech bubble will stay visible indefinitely.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Missing "Say nothing" Block</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Add a "Say nothing" block after the Wait to clear the speech bubble.</p>
-                            </div>
-                            
-                            <div class="mistake-block">
-                                <h5>Character Not Clickable</h5>
-                                <p class="mistake-description">Using the wrong event block or not enabling clickable objects</p>
-                                <p>If your character doesn't respond to clicks, you might be using the wrong event trigger or haven't made objects clickable in CoSpaces settings.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Settings for Clickable Objects</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Make sure you're using the "When item clicked" block (not "When scene starts") and check that your project settings allow object interaction.</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -661,27 +615,24 @@
                             <h3 class="subsection-heading">Block Setup</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <img src="https://i.imgur.com/8hSb967.png" alt="Quiz System Blocks">
                                     <p>Screenshot: Quiz System Blocks</p>
                                 </div>
                                 <div class="annotation">
                                     <div class="annotation-title">Key Blocks:</div>
                                     <ul style="text-align: left;">
-                                        <li>Variables (for score and current question)</li>
-                                        <li>When item clicked (for answer choices)</li>
-                                        <li>If/Then blocks (to check answers)</li>
-                                        <li>Say block (for feedback)</li>
-                                        <li>Set variable (to track score)</li>
+                                        <li>Quiz block with the question, the two answers, and the correct answer selected</li>
+                                        <li>Say feedback (to tell the user if they got it right or wrong)</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
                         <div class="subsection-block">
-                            <h3 class="subsection-heading">Examples</h3>
+                            <h3 class="subsection-heading">EXTENSION</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <img src="https://placeholder.com/800x500" alt="Simple Quiz Setup">
                                     <p>Screenshot: Simple Quiz Setup</p>
                                 </div>
                                 <div class="annotation">
@@ -709,40 +660,6 @@
                                 <li><i class="fas fa-check-circle"></i> For class assessments or learning checks</li>
                             </ul>
                         </div>
-
-                        <div class="common-mistakes-container">
-                            <h3 class="mistake-heading">Common Mistakes</h3>
-                            
-                            <div class="mistake-block">
-                                <h5>Not Using Variables</h5>
-                                <p class="mistake-description">Trying to track score without variables</p>
-                                <p>Without using a variable to keep score, your quiz can't remember how many questions the player answered correctly.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Creating Score Variable</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Create a "score" variable and use "Set variable" blocks to increase it when answers are correct.</p>
-                            </div>
-                            
-                            <div class="mistake-block">
-                                <h5>Quiz Gets Stuck</h5>
-                                <p class="mistake-description">Not having a way to move between questions</p>
-                                <p>If you don't add code to move to the next question after an answer is selected, your quiz will get stuck on the first question.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Next Question System</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Create a variable to track current question and code that shows the next question when an answer is clicked.</p>
-                            </div>
-                            
-                            <div class="mistake-block">
-                                <h5>Confusing Feedback</h5>
-                                <p class="mistake-description">Not providing clear feedback on answers</p>
-                                <p>If you don't tell the player whether their answer was correct or incorrect, they won't know how they're doing.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Feedback System</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Add "Say" blocks or feedback text to clearly indicate correct and incorrect answers.</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -764,37 +681,32 @@
                             <h3 class="subsection-heading">Block Setup</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <img src="https://i.imgur.com/F8CAVVX.png" alt="Info Panel System Blocks">
                                     <p>Screenshot: Info Panel System Blocks</p>
                                 </div>
                                 <div class="annotation">
                                     <div class="annotation-title">Key Blocks:</div>
                                     <ul style="text-align: left;">
-                                        <li>When item clicked</li>
-                                        <li>Show/Hide item blocks</li>
-                                        <li>Set text blocks (for dynamic text)</li>
-                                        <li>Color and position blocks</li>
+                                        <li>When character clicked</li>
+                                        <li>Show info panel with title and text.</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
                         <div class="subsection-block">
-                            <h3 class="subsection-heading">Examples</h3>
+                            <h3 class="subsection-heading">EXTENSION</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <img src="https://i.imgur.com/5jEdbKh.png" alt="Info Panel Example">
                                     <p>Screenshot: Info Panel Example</p>
                                 </div>
                                 <div class="annotation">
                                     <div class="annotation-title">Steps for Basic Info Panel:</div>
                                     <ol style="text-align: left;">
-                                        <li>Create a panel using a flat rectangle or cube</li>
-                                        <li>Add text objects on top of the panel</li>
-                                        <li>Keep the panel hidden at start (in properties or with code)</li>
-                                        <li>Add "When item clicked" to the object that should trigger the panel</li>
-                                        <li>Add "Show item" block for the panel</li>
-                                        <li>Create a close button with "When item clicked" and "Hide item" blocks</li>
+                                        <li>Click on the "Upload" tab in the bottom toolbar (circled in red in the image)</li>
+<li>Select an image file from your computer and upload it</li>
+<li>Now go to your code and click the image field (highlighted with red arrow in the screenshot) to select your uploaded image</li>
                                     </ol>
                                 </div>
                             </div>
@@ -808,40 +720,6 @@
                                 <li><i class="fas fa-check-circle"></i> For interactive diagrams or models</li>
                                 <li><i class="fas fa-check-circle"></i> To create in-game help screens or instructions</li>
                             </ul>
-                        </div>
-
-                        <div class="common-mistakes-container">
-                            <h3 class="mistake-heading">Common Mistakes</h3>
-                            
-                            <div class="mistake-block">
-                                <h5>No Way to Close Panel</h5>
-                                <p class="mistake-description">Forgetting to add a close button or function</p>
-                                <p>If you don't add a way to close or hide the info panel, it will stay on screen permanently after being opened.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Close Button Setup</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Always add a close button with "When clicked" and "Hide item" blocks for your panel.</p>
-                            </div>
-                            
-                            <div class="mistake-block">
-                                <h5>Panel Blocks the View</h5>
-                                <p class="mistake-description">Poor positioning of the info panel</p>
-                                <p>If your panel appears in the center of the screen or covers important elements, it can block the user's view of the scene.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Panel Positioning</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Position panels at the edges of the screen or make them semi-transparent so they don't completely block the view.</p>
-                            </div>
-                            
-                            <div class="mistake-block">
-                                <h5>Text Too Small or Dense</h5>
-                                <p class="mistake-description">Putting too much text or using small font sizes</p>
-                                <p>If your text is too small or if there's too much of it, users won't be able to read it easily, especially on mobile devices.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Text Formatting</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Use large, clear text with short paragraphs. Consider breaking information into multiple panels if needed.</p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -864,7 +742,7 @@
                             <h3 class="subsection-heading">Block Setup</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <img src="https://placeholder.com/800x500" alt="Character Path Blocks">
                                     <p>Screenshot: Character Path Blocks</p>
                                 </div>
                                 <div class="annotation">
@@ -881,10 +759,10 @@
                         </div>
 
                         <div class="subsection-block">
-                            <h3 class="subsection-heading">Examples</h3>
+                            <h3 class="subsection-heading">EXTENSION</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <img src="https://placeholder.com/800x500" alt="Character Following a Path">
                                     <p>Screenshot: Character Following a Path</p>
                                 </div>
                                 <div class="annotation">
@@ -905,7 +783,7 @@
                             <h3 class="subsection-heading">Advanced Path Features</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <img src="https://placeholder.com/800x500" alt="Loop Path with Talking">
                                     <p>Screenshot: Loop Path with Talking</p>
                                 </div>
                                 <div class="annotation">
@@ -928,40 +806,6 @@
                                 <li><i class="fas fa-check-circle"></i> For animations showing historical journeys or processes</li>
                                 <li><i class="fas fa-check-circle"></i> To demonstrate routes or paths in geography/map projects</li>
                             </ul>
-                        </div>
-
-                        <div class="common-mistakes-container">
-                            <h3 class="mistake-heading">Common Mistakes</h3>
-                            
-                            <div class="mistake-block">
-                                <h5>Character Doesn't Reach Destination</h5>
-                                <p class="mistake-description">Not waiting long enough between movement commands</p>
-                                <p>If you don't add enough wait time between "Move to position" blocks, the character will start moving to the next position before reaching the current one.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Proper Wait Timing</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Add appropriate "Wait" blocks after each movement command to give the character time to complete the movement.</p>
-                            </div>
-                            
-                            <div class="mistake-block">
-                                <h5>Character Slides Without Walking Animation</h5>
-                                <p class="mistake-description">Forgetting to add walking animation</p>
-                                <p>If you make a character move without playing a walking animation, they'll slide across the ground unnaturally.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Adding Walk Animation</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Always add a "Play animation" block with "walking" before movement commands.</p>
-                            </div>
-                            
-                            <div class="mistake-block">
-                                <h5>Character Faces Wrong Direction</h5>
-                                <p class="mistake-description">Not setting the correct orientation</p>
-                                <p>Characters may move to the right position but face the wrong way if you don't use "Turn to face" blocks.</p>
-                                <div class="screenshot-placeholder" style="height: 120px;">
-                                    <p>Screenshot: Turn to Face Block</p>
-                                </div>
-                                <p class="fix-explanation">Fix: Use "Turn to face" blocks to make sure the character is oriented correctly for each segment of the path.</p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1038,6 +882,36 @@
                         content.classList.add('active');
                         arrow.classList.add('rotate-arrow');
                     }
+                }
+            });
+            
+            // Modal image functionality
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('expandedImage');
+            const captionText = document.getElementById('imageCaption');
+            const closeModal = document.getElementsByClassName('close-modal')[0];
+            
+            // Get all images in screenshot placeholders
+            const images = document.querySelectorAll('.screenshot-placeholder img');
+            
+            // Add click event to each image
+            images.forEach(img => {
+                img.addEventListener('click', function() {
+                    modal.style.display = 'block';
+                    modalImg.src = this.src;
+                    captionText.innerHTML = this.alt;
+                });
+            });
+            
+            // Close modal when clicking X
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside the image
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
                 }
             });
         });
