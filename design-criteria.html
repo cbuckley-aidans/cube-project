@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Criteria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon Icons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        /* Additional styles specific to the design criteria page */
+        .merge-cube {
+            width: 120px;
+            height: 120px;
+            perspective: 600px;
+            margin: 30px auto;
+        }
+        
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-15deg) rotateY(45deg);
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+            padding: 5px;
+        }
+        
+        .front { transform: translateZ(60px); background-color: rgba(255,99,71,0.7); }
+        .back { transform: rotateY(180deg) translateZ(60px); background-color: rgba(30,144,255,0.7); }
+        .right { transform: rotateY(90deg) translateZ(60px); background-color: rgba(50,205,50,0.7); }
+        .left { transform: rotateY(-90deg) translateZ(60px); background-color: rgba(255,215,0,0.7); }
+        .top { transform: rotateX(90deg) translateZ(60px); background-color: rgba(138,43,226,0.7); }
+        .bottom { transform: rotateX(-90deg) translateZ(60px); background-color: rgba(255,105,180,0.7); }
+        
+        .dark-section .cube-face {
+            color: white;
+            border-color: #555;
+        }
+        
+        .criteria-input {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .criteria-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .criteria-input button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        .criteria-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .criteria-list li {
+            padding: 10px;
+            background-color: #f5f5f5;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .criteria-list li button {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .drag-container {
+            min-height: 150px;
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .draggable-item {
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            cursor: move;
+        }
+        
+        .design-criteria-info {
+            padding: 20px;
+            background-color: rgba(16, 185, 129, 0.1);
+            border-radius: var(--border-radius);
+            margin-top: 15px;
+            border-left: 4px solid var(--chew-color);
+        }
+        
+        .assessment-instruction {
+            font-weight: bold;
+            margin-top: 15px;
+            padding: 12px 16px;
+            background-color: rgba(16, 185, 129, 0.2);
+            border-radius: var(--border-radius);
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .reflection-card {
+            background-color: #f9fafb;
+            border-radius: var(--border-radius);
+            padding: 16px;
+            margin-top: 12px;
+            border-left: 4px solid var(--chew-color);
+        }
+        
+        .reflection-question {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+        
+        .think-pair-share {
+            display: flex;
+            margin-top: 15px;
+            gap: 15px;
+        }
+        
+        .think-pair-share-step {
+            flex: 1;
+            background-color: #f9fafb;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-top: 3px solid var(--chew-color);
+        }
+        
+        .step-title {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #374151;
+        }
+        
+        .step-title i {
+            margin-right: 8px;
+            color: var(--chew-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" style="overflow-y: auto; overflow-x: hidden;">
+        <div class="sidebar-logo">DESIGN CRITERIA</div>
+        <a href="https://cbuckley-aidans.github.io/python-basics/resource-hub.html" class="home-button">
+            <i class="fas fa-home"></i>
+            HOME
+        </a>
+        <div class="sidebar-nav">
+            <button class="tab-button active" data-tab="lisc">
+                <i class="fas fa-clipboard-list"></i>
+                LI/SC
+            </button>
+            <button class="tab-button" data-tab="chunk1">
+                <i class="fas fa-cube"></i>
+                CHUNK 1
+            </button>
+            <button class="tab-button" data-tab="chew1">
+                <i class="fas fa-utensils"></i>
+                CHEW 1
+            </button>
+            <button class="tab-button" data-tab="chunk2">
+                <i class="fas fa-cube"></i>
+                CHUNK 2
+            </button>
+            <button class="tab-button" data-tab="chew2">
+                <i class="fas fa-utensils"></i>
+                CHEW 2
+            </button>
+            
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Learning Intentions and Success Criteria section -->
+        <section id="lisc" class="tab-content active light-section">
+            <h1>LEARNING INTENTIONS & SUCCESS CRITERIA <i class="fas fa-bullseye" style="margin-left: 15px;"></i></h1>
+            
+            <div class="card">
+                <div class="element-header" style="margin: -35px -40px 30px -40px; padding: 25px 35px;">
+                    <div class="element-number">1</div>
+                    <h3>Learning Intentions <i class="fas fa-bullseye" style="margin-left: 15px; color: var(--accent-color);"></i></h3>
+                </div>
+                
+                <ul>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 12px;"></i> Understand what design criteria are and why they are important</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 12px;"></i> Learn how to create effective design criteria for your biographical project</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="element-header" style="margin: -35px -40px 30px -40px; padding: 25px 35px;">
+                    <div class="element-number">2</div>
+                    <h3>Success Criteria <i class="fas fa-trophy" style="margin-left: 15px; color: var(--accent-color);"></i></h3>
+                </div>
+                
+                <p>By the end of this lesson, you should be able to:</p>
+                
+                <ul>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Create a list of 4-6 design criteria for your biographical Merge Cube project</li>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Plan how to implement your design in CoSpaces</li>
+                    <li><i class="fas fa-star" style="color: var(--accent-color); margin-right: 12px;"></i> Evaluate your planning against your criteria</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CHUNK 1: Introduction to Design Criteria -->
+        <section id="chunk1" class="tab-content dark-section">
+            <h1>CHUNK 1: WHAT ARE DESIGN CRITERIA? <i class="fas fa-list-check" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chunk-section">
+                <div class="chunk-badge">TEACHER CHUNK</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 10 mins</div>
+                
+                <h3>Understanding Design Criteria</h3>
+                
+                <p>Design criteria are a list of 'must have' features or requirements that you need to consider when making your project. They help you focus on what's important and guide your design decisions.</p>
+                
+                <div class="two-column-grid" style="margin-top: 30px;">
+                    <div class="interactive-card">
+                        <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                            <div class="element-number">1</div>
+                            <h3>What Are Design Criteria? <i class="fas fa-question-circle" style="margin-left: 10px;"></i></h3>
+                        </div>
+                        
+                        <p>Design criteria are specific statements that describe what your project must do or have to be successful. They are like a checklist for your project!</p>
+                        
+                        <div style="background-color: rgba(0,0,0,0.05); border-radius: var(--border-radius); padding: 15px; margin-top: 15px;">
+                            <p style="margin: 0;"><i class="fas fa-lightbulb" style="color: var(--accent-color); margin-right: 10px;"></i> Good design criteria are <strong>specific</strong>, <strong>measurable</strong>, and <strong>achievable</strong>.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-card">
+                        <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                            <div class="element-number">2</div>
+                            <h3>Why Do We Need Them? <i class="fas fa-bullseye" style="margin-left: 10px;"></i></h3>
+                        </div>
+                        
+                        <p>Design criteria help you:</p>
+                        
+                        <ul>
+                            <li style="margin-bottom: 8px;">Stay focused on what's important</li>
+                            <li style="margin-bottom: 8px;">Make decisions when you're not sure what to do</li>
+                            <li style="margin-bottom: 8px;">Check if your project is on track</li>
+                            <li>Know when your project is complete and successful</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">3</div>
+                        <h3>Examples of Design Criteria <i class="fas fa-list" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p>Here are some examples of design criteria for different projects:</p>
+                    
+                    <div style="overflow-x: auto; margin: 20px 0;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead>
+                                <tr style="background-color: var(--accent-color); color: white;">
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Project Type</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Example Design Criteria</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Card Game</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">
+                                        <ul>
+                                            <li>The game must be playable by 2-4 players</li>
+                                            <li>A game should last 15-20 minutes</li>
+                                            <li>Rules must fit on a single page</li>
+                                            <li>The game should be fun and engaging</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">School Website</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">
+                                        <ul>
+                                            <li>The website must work on phones and computers</li>
+                                            <li>Users must find information in 3 clicks or less</li>
+                                            <li>Text must be easy to read (large enough font)</li>
+                                            <li>colours must match school branding</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Science Presentation</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">
+                                        <ul>
+                                            <li>Must include at least 3 scientific facts</li>
+                                            <li>Should last between 3-5 minutes</li>
+                                            <li>Must include visual aids (diagrams, pictures)</li>
+                                            <li>Language should be appropriate for Year 6 audience</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">4</div>
+                        <h3>Writing Good Design Criteria <i class="fas fa-pencil" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p>When writing design criteria, make sure they are:</p>
+                    
+                    <div class="elements-grid">
+                        <div class="element-card" style="background-color: #f0f7ff;">
+                            <div class="element-header">
+                                <h3>SPECIFIC <i class="fas fa-crosshairs" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>Not: "My project should look good"<br>
+                                But: "My project must use at least 3 different colours that contrast well"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card" style="background-color: #f0fff4;">
+                            <div class="element-header">
+                                <h3>MEASURABLE <i class="fas fa-ruler" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>Not: "My biography should have lots of information"<br>
+                                But: "My biography must include at least 5 key facts about the person"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card" style="background-color: #fff7f0;">
+                            <div class="element-header">
+                                <h3>ACHIEVABLE <i class="fas fa-check" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>Not: "My project will have 50 interactive elements"<br>
+                                But: "My project will have at least 1 interactive element per cube face"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHEW 1: Identifying Design Criteria -->
+        <section id="chew1" class="tab-content light-section">
+            <h1>CHEW 1: IDENTIFYING DESIGN CRITERIA <i class="fas fa-magnifying-glass" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chew-section">
+                <div class="chew-badge">STUDENT ACTIVITY</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 10 mins</div>
+                
+                <h3>Let's Identify Design Criteria</h3>
+                
+                <div class="activity-goal">
+                    <h4><i class="fas fa-bullseye" style="color: var(--chew-color);"></i> Activity Goals</h4>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Identify good and poor examples of design criteria</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Improve vague criteria to make them specific and measurable</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Start thinking about criteria for your own project</li>
+                    </ul>
+                </div>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>Good or Not? <i class="fas fa-thumbs-up" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p>Review each design criterion below. Check the box if you think it's a good criterion or leave it unchecked if you think it needs improvement.</p>
+                    
+                    <div style="margin: 20px 0;">
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <input type="checkbox" id="criteria1" style="margin-right: 10px;">
+                            <label for="criteria1">My project must be colourful and nice to look at</label>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <input type="checkbox" id="criteria2" style="margin-right: 10px;">
+                            <label for="criteria2">My biographical cube must include at least 3 important dates from the person's life</label>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <input type="checkbox" id="criteria3" style="margin-right: 10px;">
+                            <label for="criteria3">Each side of my cube must have a different theme from the person's life (e.g., childhood, career, achievements)</label>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <input type="checkbox" id="criteria4" style="margin-right: 10px;">
+                            <label for="criteria4">My project will be interesting</label>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <input type="checkbox" id="criteria5" style="margin-right: 10px;">
+                            <label for="criteria5">Text on my cube must be large enough to read from 1 meter away</label>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center;">
+                            <input type="checkbox" id="criteria6" style="margin-right: 10px;">
+                            <label for="criteria6">I need to include pictures</label>
+                        </div>
+                    </div>
+                    
+                    <button id="checkCriteriaBtn" style="padding: 8px 15px; background-color: var(--chew-color); color: white; border: none; border-radius: var(--border-radius); cursor: pointer;">
+                        Check Answers
+                    </button>
+                    
+                    <div id="criteriaResults" style="margin-top: 20px; padding: 15px; background-color: #f0fff4; border-radius: var(--border-radius); display: none;">
+                        <p style="margin-bottom: 10px; font-weight: 600;">Results:</p>
+                        <ul id="criteriaFeedback" style="margin: 0; padding-left: 20px;"></ul>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>Fix These Criteria <i class="fas fa-wrench" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p>These design criteria are too vague. Rewrite them to make them more specific and measurable:</p>
+                    
+                    <div style="margin: 20px 0;">
+                        <div style="margin-bottom: 20px;">
+                            <p style="font-weight: 600; margin-bottom: 5px;">1. "My biography project should be informative."</p>
+                            <textarea id="improve1" rows="2" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" placeholder="Rewrite this to be more specific..."></textarea>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <p style="font-weight: 600; margin-bottom: 5px;">2. "The design should look professional."</p>
+                            <textarea id="improve2" rows="2" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" placeholder="Rewrite this to be more specific..."></textarea>
+                        </div>
+                        
+                        <div>
+                            <p style="font-weight: 600; margin-bottom: 5px;">3. "People should enjoy using my Merge Cube."</p>
+                            <textarea id="improve3" rows="2" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" placeholder="Rewrite this to be more specific..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <button id="checkImproveBtn" style="padding: 8px 15px; background-color: var(--chew-color); color: white; border: none; border-radius: var(--border-radius); cursor: pointer;">
+                        Show Example Improvements
+                    </button>
+                    
+                    <div id="improveResults" style="margin-top: 20px; display: none;">
+                        <div style="padding: 15px; background-color: #f0fff4; border-radius: var(--border-radius); margin-bottom: 15px;">
+                            <p style="font-weight: 600; margin-bottom: 5px;">1. Better version:</p>
+                            <p style="margin: 0;">"My biography project must include at least 5 key facts about the person, covering their early life, achievements, and legacy."</p>
+                        </div>
+                        
+                        <div style="padding: 15px; background-color: #f0fff4; border-radius: var(--border-radius); margin-bottom: 15px;">
+                            <p style="font-weight: 600; margin-bottom: 5px;">2. Better version:</p>
+                            <p style="margin: 0;">"The design must use a consistent color scheme (maximum 3 colours plus black/white) and include properly aligned text with no spelling errors."</p>
+                        </div>
+                        
+                        <div style="padding: 15px; background-color: #f0fff4; border-radius: var(--border-radius);">
+                            <p style="font-weight: 600; margin-bottom: 5px;">3. Better version:</p>
+                            <p style="margin: 0;">"My Merge Cube must include at least 2 interactive elements that users can click on to reveal more information, and navigation should be intuitive with clear instructions."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">3</div>
+                        <h3>Start Your Own List <i class="fas fa-list-check" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div class="design-criteria-info">
+                        <h4 style="margin-top: 0; color: #065f46;"><i class="fas fa-lightbulb" style="color: var(--chew-color); margin-right: 10px;"></i> Your Biographical Merge Cube Project</h4>
+                        
+                        <p><strong>Consider these questions as you develop your design criteria:</strong></p>
+                        <ul style="margin-bottom: 15px;">
+                            <li>Who is your biography about? What makes them significant?</li>
+                            <li>What are the most important aspects of their life to highlight?</li>
+                            <li>How will users interact with and navigate your cube?</li>
+                            <li>What visual elements will make your project engaging?</li>
+                            <li>How will you organize information across the six faces?</li>
+                        </ul>
+                        
+                        <p>Remember to make your criteria <strong>specific</strong>, <strong>measurable</strong>, and <strong>achievable</strong>!</p>
+                    </div>
+
+                    <div class="assessment-instruction">
+                        <i class="fas fa-clipboard-list" style="color: var(--chew-color); margin-right: 10px;"></i>
+                        Record your design criteria in your assessment slide
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHUNK 2: Design Criteria for Merge Cubes -->
+        <section id="chunk2" class="tab-content dark-section">
+            <h1>CHUNK 2: MERGE CUBE DESIGN CRITERIA <i class="fas fa-cube" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chunk-section">
+                <div class="chunk-badge">TEACHER CHUNK</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 10 mins</div>
+                
+                <h3>Designing for Merge Cubes</h3>
+                
+                <p>Merge Cubes are special because they have 6 sides that can display different content. When designing for Merge Cubes, we need specific criteria that address this unique format.</p>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>Understanding Merge Cubes <i class="fas fa-cube" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center;">
+                        <div style="flex: 1; min-width: 300px;">
+                            <p>A Merge Cube has 6 sides (faces) that can display different content when viewed through an app or website:</p>
+                            
+                            <ul>
+                                <li style="margin-bottom: 8px;">Front face</li>
+                                <li style="margin-bottom: 8px;">Back face</li>
+                                <li style="margin-bottom: 8px;">Left face</li>
+                                <li style="margin-bottom: 8px;">Right face</li>
+                                <li style="margin-bottom: 8px;">Top face</li>
+                                <li>Bottom face</li>
+                            </ul>
+                            
+                            <p>When creating a biographical project, each face can tell a different part of the person's story!</p>
+                        </div>
+                        
+                        <div class="merge-cube">
+                            <div class="cube">
+                                <div class="cube-face front">FRONT<br>Early Life</div>
+                                <div class="cube-face back">BACK<br>Later Years</div>
+                                <div class="cube-face right">RIGHT<br>Achievements</div>
+                                <div class="cube-face left">LEFT<br>Challenges</div>
+                                <div class="cube-face top">TOP<br>Legacy</div>
+                                <div class="cube-face bottom">BOTTOM<br>Timeline</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>Merge Cube Design Considerations <i class="fas fa-paint-brush" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p>When creating design criteria for a Merge Cube project, consider these important factors:</p>
+                    
+                    <div class="elements-grid">
+                        <div class="element-card" style="background-color: #f0f7ff;">
+                            <div class="element-header">
+                                <h3>CONTENT ORGANIZATION <i class="fas fa-sitemap" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>How will you divide content across the 6 faces? Each face should have a clear purpose.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card" style="background-color: #f0fff4;">
+                            <div class="element-header">
+                                <h3>NAVIGATION <i class="fas fa-compass" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>How will users know which face to look at next? Consider using arrows or numbering.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card" style="background-color: #fff7f0;">
+                            <div class="element-header">
+                                <h3>VISUAL DESIGN <i class="fas fa-palette" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>Will all faces share a common theme? What colours, fonts, and images will you use?</p>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card" style="background-color: #f0f5ff;">
+                            <div class="element-header">
+                                <h3>INTERACTIVITY <i class="fas fa-hand-pointer" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>What interactive elements will you include? Buttons, animations, or pop-ups?</p>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card" style="background-color: #fff0f0;">
+                            <div class="element-header">
+                                <h3>TEXT AMOUNT <i class="fas fa-font" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>How much text will you include on each face? Too much text can be hard to read.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="element-card" style="background-color: #fffff0;">
+                            <div class="element-header">
+                                <h3>USABILITY <i class="fas fa-users" style="margin-left: 12px;"></i></h3>
+                            </div>
+                            <div class="element-content">
+                                <p>How easy is it for someone to use your cube? Consider testing with others.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </section>
+
+        <!-- CHEW 2: Applying Criteria to Merge Cubes -->
+        <section id="chew2" class="tab-content light-section">
+            <h1>CHEW 2: DESIGNING FOR MERGE CUBES <i class="fas fa-cubes" style="margin-left: 15px;"></i></h1>
+            
+            <div class="chew-section">
+                <div class="chew-badge">STUDENT ACTIVITY</div>
+                <div class="timer-badge"><i class="fas fa-clock"></i> 15 mins</div>
+                
+                <h3>Planning Your Merge Cube Biography</h3>
+                
+                <div class="activity-goal">
+                    <h4><i class="fas fa-bullseye" style="color: var(--chew-color);"></i> Activity Goals</h4>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Plan content for each face of your Merge Cube</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Apply design criteria to each face</li>
+                        <li><i class="fas fa-angle-right" style="margin-right: 12px; color: var(--chew-color);"></i> Consider how the faces connect to tell a complete story</li>
+                    </ul>
+                </div>
+                
+                <div class="interactive-card">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">1</div>
+                        <h3>Cube Face Planner <i class="fas fa-th-large" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p>You need to plan what content will go on each face of your Merge Cube:</p>
+                    
+                    <div class="merge-cube">
+                        <div class="cube">
+                            <div class="cube-face front">FRONT<br>Early Life</div>
+                            <div class="cube-face back">BACK<br>Later Years</div>
+                            <div class="cube-face right">RIGHT<br>Achievements</div>
+                            <div class="cube-face left">LEFT<br>Challenges</div>
+                            <div class="cube-face top">TOP<br>Legacy</div>
+                            <div class="cube-face bottom">BOTTOM<br>Timeline</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background-color: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius); padding: 15px; margin: 20px 0;">
+                        <p style="margin: 0;"><i class="fas fa-info-circle" style="color: var(--chew-color); margin-right: 10px;"></i> <strong>Planning Tips:</strong></p>
+                        <ul style="margin-top: 10px; margin-bottom: 0;">
+                            <li>Consider using the front face for introduction/overview</li>
+                            <li>Group related information on adjacent faces</li>
+                            <li>Think about how a user will physically turn the cube to explore your biography</li>
+                            <li>Balance text and visual elements on each face</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="assessment-instruction">
+                        <i class="fas fa-clipboard-list" style="color: var(--chew-color); margin-right: 10px;"></i>
+                        Complete your 6 face planning in your assessment slide
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">2</div>
+                        <h3>Design Criteria Reflection <i class="fas fa-check-square" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <p>Now that you've planned your cube faces, take some time to reflect on your design criteria:</p>
+                    
+                    <div class="reflection-card">
+                        <p class="reflection-question"><i class="fas fa-question-circle" style="color: var(--chew-color); margin-right: 8px;"></i> Will my current face planning fulfill all my design criteria?</p>
+                        <p class="reflection-question"><i class="fas fa-question-circle" style="color: var(--chew-color); margin-right: 8px;"></i> Are there any design criteria I might struggle to meet with my current plan?</p>
+                        <p class="reflection-question"><i class="fas fa-question-circle" style="color: var(--chew-color); margin-right: 8px;"></i> Do I need to adjust any of my criteria, or modify my cube face plan?</p>
+                        <p class="reflection-question"><i class="fas fa-question-circle" style="color: var(--chew-color); margin-right: 8px;"></i> What might be the most challenging criterion to meet, and why?</p>
+                    </div>
+                    
+                    <div style="background-color: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius); padding: 15px; margin-top: 20px;">
+                        <p style="margin: 0;"><i class="fas fa-lightbulb" style="color: var(--chew-color); margin-right: 10px;"></i> <strong>Remember:</strong> It's fine to adjust your design criteria or your face planning at this stage. The important thing is that they work well together!</p>
+                    </div>
+                </div>
+                
+                <div class="interactive-card" style="margin-top: 30px;">
+                    <div class="element-header" style="margin: -35px -35px 30px -35px; padding: 20px 25px;">
+                        <div class="element-number">3</div>
+                        <h3>Think-Pair-Share: Design Feedback <i class="fas fa-users" style="margin-left: 10px;"></i></h3>
+                    </div>
+                    
+                    <div class="think-pair-share">
+                        <div class="think-pair-share-step">
+                            <div class="step-title">
+                                <i class="fas fa-brain"></i> THINK
+                            </div>
+                            <p>Spend 2 minutes reviewing your own design criteria and cube face plan.</p>
+                            <ul style="padding-left: 20px;">
+                                <li>What are you most confident about?</li>
+                                <li>What aspects might need improvement?</li>
+                                <li>What questions do you have?</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="think-pair-share-step">
+                            <div class="step-title">
+                                <i class="fas fa-user-friends"></i> PAIR
+                            </div>
+                            <p>Share your plan with a partner (5 minutes).</p>
+                            <p>Ask each other these questions:</p>
+                            <ul style="padding-left: 20px;">
+                                <li>Do you think my design will meet all my criteria?</li>
+                                <li>Is my content organization logical?</li>
+                                <li>What's the strongest part of my design?</li>
+                                <li>What could I improve?</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="think-pair-share-step">
+                            <div class="step-title">
+                                <i class="fas fa-share-alt"></i> SHARE
+                            </div>
+                            <p>Reflect on your partner's feedback.</p>
+                            <p>Consider these points:</p>
+                            <ul style="padding-left: 20px;">
+                                <li>What feedback did you find most helpful?</li>
+                                <li>What changes might you make to your design?</li>
+                                <li>What did you learn from seeing someone else's approach?</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="assessment-instruction" style="margin-top: 20px;">
+                        <i class="fas fa-clipboard-list" style="color: var(--chew-color); margin-right: 10px;"></i>
+                        Make any changes you think are necessary in your assessment slides
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+    </main>
+
+    <script>
+        // Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and tabs
+                    document.querySelectorAll('.tab-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Add active class to selected button and tab
+                    this.classList.add('active');
+                    document.getElementById(tab).classList.add('active');
+                });
+            });
+            
+            // CHEW 1: Criteria Check
+            const checkCriteriaBtn = document.getElementById('checkCriteriaBtn');
+            if (checkCriteriaBtn) {
+                checkCriteriaBtn.addEventListener('click', function() {
+                    const criteriaResults = document.getElementById('criteriaResults');
+                    const criteriaFeedback = document.getElementById('criteriaFeedback');
+                    
+                    criteriaFeedback.innerHTML = '';
+                    
+                    // Check each criterion
+                    const criteria = [
+                        { id: 'criteria1', isGood: false, feedback: 'This is too vague. What does "colourful and nice" mean specifically?' },
+                        { id: 'criteria2', isGood: true, feedback: 'Good! This is specific and measurable.' },
+                        { id: 'criteria3', isGood: true, feedback: 'Excellent! This provides clear organization for your content.' },
+                        { id: 'criteria4', isGood: false, feedback: 'Too vague. How will you measure "interesting"?' },
+                        { id: 'criteria5', isGood: true, feedback: 'Perfect! This is very specific and measurable.' },
+                        { id: 'criteria6', isGood: false, feedback: 'Needs more detail. How many pictures? What kind?' }
+                    ];
+                    
+                    criteria.forEach(criterion => {
+                        const checkbox = document.getElementById(criterion.id);
+                        if (checkbox) {
+                            const isChecked = checkbox.checked;
+                            
+                            const listItem = document.createElement('li');
+                            if ((isChecked && criterion.isGood) || (!isChecked && !criterion.isGood)) {
+                                listItem.style.color = '#2e7d32';
+                                listItem.innerHTML = `<i class="fas fa-check-circle" style="color: #2e7d32; margin-right: 8px;"></i> ${checkbox.nextElementSibling.textContent}: ${criterion.feedback}`;
+                            } else {
+                                listItem.style.color = '#c62828';
+                                listItem.innerHTML = `<i class="fas fa-times-circle" style="color: #c62828; margin-right: 8px;"></i> ${checkbox.nextElementSibling.textContent}: ${criterion.feedback}`;
+                            }
+                            
+                            criteriaFeedback.appendChild(listItem);
+                        }
+                    });
+                    
+                    criteriaResults.style.display = 'block';
+                });
+            }
+            
+            // CHEW 1: Improve Criteria
+            const checkImproveBtn = document.getElementById('checkImproveBtn');
+            if (checkImproveBtn) {
+                checkImproveBtn.addEventListener('click', function() {
+                    const improveResults = document.getElementById('improveResults');
+                    improveResults.style.display = 'block';
+                });
+            }
+            
+            // Cube animation
+            const cube = document.querySelector('.cube');
+            if (cube) {
+                let rotateX = -15;
+                let rotateY = 45;
+                
+                setInterval(() => {
+                    rotateY += 0.2;
+                    if (rotateY > 360) rotateY = 0;
+                    cube.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                }, 50);
+            }
+        });
+    </script>
+</body>
+</html>
