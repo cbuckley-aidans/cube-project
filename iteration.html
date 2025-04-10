@@ -166,6 +166,53 @@
         .close-modal:hover {
             color: var(--accent-color);
         }
+        
+        /* Responsive grid fixes */
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .two-column-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .variable-animation {
+                padding: 15px !important;
+            }
+            
+            .elements-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        /* Fix for examples with code formatting */
+        .code-example {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-top: 10px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+        
+        .code-line {
+            margin: 0;
+            font-style: italic;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        .code-line-indented {
+            margin: 0;
+            font-style: italic;
+            color: #666;
+            margin-left: 20px;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
@@ -264,21 +311,21 @@
                             <div class="two-column-grid">
                                 <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); padding: 15px; background-color: rgba(255,0,0,0.1);">
                                     <h4><i class="fas fa-times-circle" style="color: var(--bad-color); margin-right: 10px;"></i> Without Loops (Repetitive)</h4>
-                                    <div style="background-color: white; border-radius: var(--border-radius); padding: 15px; margin-top: 10px;">
-                                        <p style="margin: 0; font-style: italic; color: #666;">move forward</p>
-                                        <p style="margin: 0; font-style: italic; color: #666;">move forward</p>
-                                        <p style="margin: 0; font-style: italic; color: #666;">move forward</p>
-                                        <p style="margin: 0; font-style: italic; color: #666;">move forward</p>
-                                        <p style="margin: 0; font-style: italic; color: #666;">move forward</p>
+                                    <div class="code-example">
+                                        <p class="code-line">move forward</p>
+                                        <p class="code-line">move forward</p>
+                                        <p class="code-line">move forward</p>
+                                        <p class="code-line">move forward</p>
+                                        <p class="code-line">move forward</p>
                                     </div>
                                 </div>
                                 
                                 <div style="border: 2px solid var(--outline-color); border-radius: var(--border-radius); padding: 15px; background-color: rgba(0,255,0,0.1);">
                                     <h4><i class="fas fa-check-circle" style="color: var(--good-color); margin-right: 10px;"></i> With Loops (Efficient)</h4>
-                                    <div style="background-color: white; border-radius: var(--border-radius); padding: 15px; margin-top: 10px;">
-                                        <p style="margin: 0; font-style: italic; color: #666;">repeat 5 times:</p>
-                                        <p style="margin: 0; font-style: italic; color: #666; margin-left: 20px;">move forward</p>
-                                        <p style="margin: 0; font-style: italic; color: #666;">end repeat</p>
+                                    <div class="code-example">
+                                        <p class="code-line">repeat 5 times:</p>
+                                        <p class="code-line-indented">move forward</p>
+                                        <p class="code-line">end repeat</p>
                                     </div>
                                 </div>
                             </div>
