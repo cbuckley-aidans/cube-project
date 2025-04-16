@@ -566,6 +566,162 @@
         .skill-card[data-keywords*="path"]::before {
             background-color: var(--path-color);
         }
+
+        .carousel-container {
+        position: relative;
+        width: 100%;
+        margin-bottom: 15px;
+        overflow: hidden;
+        border: 2px solid var(--outline-color);
+        border-radius: var(--border-radius);
+        background-color: var(--primary-bg);
+        box-shadow: var(--shadow-sm);
+        transition: transform var(--transition-time), box-shadow var(--transition-time);
+    }
+    
+    .carousel-container:hover {
+        transform: translateY(-0.15em);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .carousel-slides {
+        display: flex;
+        transition: transform 0.5s ease;
+        height: 100%;
+    }
+    
+    .carousel-slide {
+        min-width: 100%;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+    
+    .carousel-slide.active {
+        display: flex;
+    }
+    
+    .carousel-slide img {
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-sm);
+        cursor: pointer;
+        border: 2px solid var(--outline-color);
+        margin-bottom: 10px;
+    }
+    
+    .carousel-slide img:hover {
+        transform: translateY(-0.15em);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .slide-caption {
+        margin: 10px 0 0 0;
+        color: var(--text-color);
+        font-weight: 500;
+        text-align: center;
+    }
+    
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.7);
+        border: 2px solid var(--outline-color);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: var(--shadow-sm);
+        transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        z-index: 10;
+    }
+    
+    .carousel-control:hover {
+        background-color: var(--accent-color);
+        color: white;
+        transform: translateY(-50%) scale(1.05);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .carousel-control.prev {
+        left: 10px;
+    }
+    
+    .carousel-control.next {
+        right: 10px;
+    }
+    
+    .carousel-indicators {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+    }
+    
+    .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #ccc;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border: 1px solid var(--outline-color);
+    }
+    
+    .indicator.active {
+        background-color: var(--path-color);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .carousel-control {
+            width: 35px;
+            height: 35px;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .carousel-control {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .indicator {
+            width: 8px;
+            height: 8px;
+        }
+    }
+
+    .video-demo {
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-sm);
+        cursor: pointer;
+        border: 2px solid var(--outline-color);
+        background-color: var(--accent-bg);
+        transition: transform var(--transition-time), box-shadow var(--transition-time);
+    }
+    
+    .video-demo:hover {
+        transform: translateY(-0.15em);
+        box-shadow: var(--shadow-md);
+    }
     </style>
 </head>
 <body>
@@ -599,6 +755,80 @@
             </div>
             
             <div id="skills-container">
+
+
+                <div class="skill-card" data-keywords="basic beginner attach select double click object face cube codeable coding">
+                    <div class="skill-header">
+                        <div class="skill-icon-container">
+                            <div class="skill-icon animation-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <h3 class="skill-title">Basic Skills</h3>
+                        </div>
+                        <i class="fas fa-chevron-down toggle-arrow"></i>
+                    </div>
+                    <div class="skill-content">
+                        <p>Essential techniques for working efficiently in CoSpaces. These fundamental skills will help you build and program your 3D scenes more effectively.</p>
+                
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Attaching Objects to Faces</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <video autoplay loop muted playsinline class="video-demo">
+                                        <source src="https://i.imgur.com/dDLmQmj.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p>Video Demo: Double-click to select the attach option</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">How to Attach Objects to Specific Faces:</div>
+                                    <ol style="text-align: left;">
+                                        <li>Double-click on the object you want to attach to</li>
+                                        <li>Select the "attach" option from the popup menu</li>
+                                        <li>Click on the specific face of the object where you want to attach</li>
+                                        <li>Now you can place new objects precisely on that face</li>
+                                    </ol>
+                                    <div class="annotation-title" style="margin-top: 12px;">When to Use:</div>
+                                    <ul style="text-align: left;">
+                                        <li>Building complex structures with precise placement</li>
+                                        <li>Creating buildings with objects on walls</li>
+                                        <li>Placing items on surfaces like tables or shelves</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="subsection-block">
+                            <h3 class="subsection-heading">Making Objects Codeable</h3>
+                            <div class="screenshot-container">
+                                <div class="screenshot-placeholder">
+                                    <video autoplay loop muted playsinline class="video-demo">
+                                        <source src="https://i.imgur.com/ZLn23Xs.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p>Video Demo: Double-click to make objects codeable</p>
+                                </div>
+                                <div class="annotation">
+                                    <div class="annotation-title">How to Make Objects Codeable:</div>
+                                    <ol style="text-align: left;">
+                                        <li>Double-click on any object in your scene</li>
+                                        <li>Look for the "Code" option in the popup menu</li>
+                                        <li>Click 'Use in CoBlocks' to make the object available in code</li>
+                                        <li>The object will now appear in your coding panel for programming</li>
+                                    </ol>
+                                    <div class="annotation-title" style="margin-top: 12px;">When to Use:</div>
+                                    <ul style="text-align: left;">
+                                        <li>When you need to code an object</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                
+                        
+                    </div>
+                </div>
+
+
                 <!-- Infinite Animation Section -->
                 <div class="skill-card" data-keywords="animation repeat infinite loop character move walk idle">
                     <div class="skill-header">
@@ -617,16 +847,14 @@
                             <h3 class="subsection-heading">Block Setup</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <img src="https://placeholder.com/800x500" alt="Infinite Animation Blocks">
+                                    <img src="https://i.imgur.com/hQJjhHy.png" alt="Infinite Animation Blocks">
                                     <p>Screenshot: Infinite Animation Blocks</p>
                                 </div>
                                 <div class="annotation">
                                     <div class="annotation-title">Key Blocks:</div>
                                     <ul style="text-align: left;">
                                         <li>When scene starts</li>
-                                        <li>Forever loop</li>
                                         <li>Play animation (walk/dance/wave)</li>
-                                        <li>Wait (optional - for animation timing)</li>
                                     </ul>
                                 </div>
                             </div>
@@ -636,7 +864,7 @@
                             <h3 class="subsection-heading">EXTENSION</h3>
                             <div class="screenshot-container">
                                 <div class="screenshot-placeholder">
-                                    <img src="https://placeholder.com/800x500" alt="Example of Walking Character">
+                                    <img src="https://i.imgur.com/jYvInAO.png" alt="Example of Walking Character">
                                     <p>Screenshot: Example of Walking Character</p>
                                 </div>
                                 <div class="annotation">
@@ -646,7 +874,7 @@
                                         <li>Add "Forever" loop block</li>
                                         <li>Inside loop, add "Play animation" block</li>
                                         <li>Select animation type (e.g., "walking")</li>
-                                        <li>Optional: Add "Wait" block if animation needs timing</li>
+                                        <li>Add "Wait" block so you only repeat a certain part of the animation</li>
                                     </ol>
                                 </div>
                             </div>
@@ -691,7 +919,7 @@
                                         <li>When item clicked</li>
                                         <li>Say (speech bubble)</li>
                                         <li>Play sound (optional)</li>
-                                        <li>Wait (to control how long message displays)</li>
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -763,21 +991,18 @@
                         <div class="subsection-block">
                             <h3 class="subsection-heading">EXTENSION</h3>
                             <div class="screenshot-container">
-                                <div class="screenshot-placeholder">
-                                    <img src="https://placeholder.com/800x500" alt="Simple Quiz Setup">
-                                    <p>Screenshot: Simple Quiz Setup</p>
-                                </div>
+                                <p><strong>Try this one yourself using the hints below!</strong></p>
+
                                 <div class="annotation">
                                     <div class="annotation-title">Steps for Basic Quiz:</div>
                                     <ol style="text-align: left;">
                                         <li>Create a variable called "score" starting at 0</li>
-                                        <li>Add question text using a 3D text object</li>
-                                        <li>Add objects for each answer choice (A, B, C)</li>
-                                        <li>For each answer object, add "When item clicked" block</li>
-                                        <li>Inside, use "If/Then" to check if it's the correct answer</li>
-                                        <li>If correct, add +1 to score and show positive feedback</li>
-                                        <li>If wrong, show feedback about the correct answer</li>
-                                        <li>Add "Wait" then code to show the next question</li>
+                                        <li>Add a quiz</li>
+                                        <li>Make sure to set the correct answer</li>
+                                        <li>If correct, add +1 to the score variable and show positive feedback (play an animation or get the character to say "Correct!")</li>
+                                        <li>If wrong, show feedback about the correct answer and take -1 from the score</li>
+                                        <li>Get the character to say the score variable at the end</li>
+                                        <li><strong>EXTRA EXTENSION: Insert another quiz inside the quiz so there are two or more questions!</strong></li>
                                     </ol>
                                 </div>
                             </div>
@@ -836,9 +1061,9 @@
                                 <div class="annotation">
                                     <div class="annotation-title">Steps for Basic Info Panel:</div>
                                     <ol style="text-align: left;">
-                                        <li>Click on the "Upload" tab in the bottom toolbar (circled in red in the image)</li>
+                                        <li>Click on the "Upload" tab in the bottom toolbar</li>
 <li>Select an image file from your computer and upload it</li>
-<li>Now go to your code and click the image field (highlighted with red arrow in the screenshot) to select your uploaded image</li>
+<li>Now go to your code and click the image field to select your uploaded image</li>
                                     </ol>
                                 </div>
                             </div>
@@ -870,70 +1095,39 @@
                     <div class="skill-content">
                         <p>Make characters move along specific paths in your scene. You can create patrols, guided tours, or animated journeys that follow predefined routes.</p>
 
-                        <div class="subsection-block">
-                            <h3 class="subsection-heading">Block Setup</h3>
-                            <div class="screenshot-container">
-                                <div class="screenshot-placeholder">
-                                    <img src="https://placeholder.com/800x500" alt="Character Path Blocks">
-                                    <p>Screenshot: Character Path Blocks</p>
+                        <div class="carousel-container">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide active">
+                                    <img src="https://i.imgur.com/fIL9PtX.png" alt="Character Path Blocks - Example 1">
+                                    <p class="slide-caption">Find the paths in the 'Special' tab in the library.</p>
                                 </div>
-                                <div class="annotation">
-                                    <div class="annotation-title">Key Blocks:</div>
-                                    <ul style="text-align: left;">
-                                        <li>When scene starts (or other trigger)</li>
-                                        <li>Move to position</li>
-                                        <li>Wait blocks (for timing)</li>
-                                        <li>Turn to face direction (optional)</li>
-                                        <li>Play animation (optional)</li>
-                                    </ul>
+                                <div class="carousel-slide">
+                                    <img src="https://i.imgur.com/ifjNsEH.png" alt="Character Path Blocks - Example 2">
+                                    <p class="slide-caption">Double click the path and rename it to make it easier to use in code.</p>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="https://i.imgur.com/3CObdfc.png" alt="Character Path Blocks - Example 3">
+                                    <p class="slide-caption">Search for 'path' in code and add this code to the thing you want to animate (not the path itself!)</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="subsection-block">
-                            <h3 class="subsection-heading">EXTENSION</h3>
-                            <div class="screenshot-container">
-                                <div class="screenshot-placeholder">
-                                    <img src="https://placeholder.com/800x500" alt="Character Following a Path">
-                                    <p>Screenshot: Character Following a Path</p>
-                                </div>
-                                <div class="annotation">
-                                    <div class="annotation-title">Steps for Basic Path:</div>
-                                    <ol style="text-align: left;">
-                                        <li>Add "When scene starts" block (or another trigger)</li>
-                                        <li>Add "Play animation" block (e.g., "walking")</li>
-                                        <li>Add "Move to position" block with coordinates of first waypoint</li>
-                                        <li>Add "Wait" block to give character time to reach position</li>
-                                        <li>Add "Turn to face" block to rotate toward next waypoint (optional)</li>
-                                        <li>Repeat steps 3-5 for each waypoint in the path</li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="subsection-block">
-                            <h3 class="subsection-heading">Advanced Path Features</h3>
-                            <div class="screenshot-container">
-                                <div class="screenshot-placeholder">
-                                    <img src="https://placeholder.com/800x500" alt="Loop Path with Talking">
-                                    <p>Screenshot: Loop Path with Talking</p>
-                                </div>
-                                <div class="annotation">
-                                    <div class="annotation-title">Advanced Features:</div>
-                                    <ul style="text-align: left;">
-                                        <li>Add a Forever loop to make characters patrol</li>
-                                        <li>Use "Say" blocks at specific waypoints to narrate</li>
-                                        <li>Add "If/Then" blocks to create conditional paths</li>
-                                        <li>Use variables to track which waypoint the character is at</li>
-                                    </ul>
-                                </div>
+                            <br>
+                            <button class="carousel-control prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-control next">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="carousel-indicators">
+                                <span class="indicator active" data-index="0"></span>
+                                <span class="indicator" data-index="1"></span>
+                                <span class="indicator" data-index="2"></span>
                             </div>
                         </div>
 
                         <div class="subsection-block">
                             <h3 class="subsection-heading">When to Use</h3>
                             <ul class="when-to-use-list">
-                                <li><i class="fas fa-check-circle"></i> For non-player characters (NPCs) in games</li>
+                                <li><i class="fas fa-check-circle"></i> For background visuals to show activity and life in your scene</li>
                                 <li><i class="fas fa-check-circle"></i> To create guided tours of virtual spaces</li>
                                 <li><i class="fas fa-check-circle"></i> For animations showing historical journeys or processes</li>
                                 <li><i class="fas fa-check-circle"></i> To demonstrate routes or paths in geography/map projects</li>
@@ -1047,6 +1241,83 @@
                 }
             });
         });
+
+        // Carousel functionality
+    function setupCarousels() {
+        const carousels = document.querySelectorAll('.carousel-container');
+        
+        carousels.forEach(carousel => {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const prevBtn = carousel.querySelector('.prev');
+            const nextBtn = carousel.querySelector('.next');
+            const indicators = carousel.querySelectorAll('.indicator');
+            let currentIndex = 0;
+            
+            // Function to update slide display
+            function updateSlides() {
+                slides.forEach((slide, index) => {
+                    if (index === currentIndex) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
+                
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Previous slide button
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateSlides();
+            });
+            
+            // Next slide button
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlides();
+            });
+            
+            // Indicator buttons
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = parseInt(indicator.getAttribute('data-index'));
+                    updateSlides();
+                });
+            });
+            
+            // Add all slides to modal click handling
+            slides.forEach(slide => {
+                const img = slide.querySelector('img');
+                if (img) {
+                    img.addEventListener('click', function() {
+                        const modal = document.getElementById('imageModal');
+                        const modalImg = document.getElementById('expandedImage');
+                        const captionText = document.getElementById('imageCaption');
+                        
+                        modal.style.display = 'block';
+                        modalImg.src = this.src;
+                        captionText.innerHTML = this.alt;
+                    });
+                }
+            });
+        });
+    }
+    
+    // Call setupCarousels after the DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Existing event listeners...
+        
+        // Setup carousels
+        setupCarousels();
+    });
     </script>
 </body>
 </html>
